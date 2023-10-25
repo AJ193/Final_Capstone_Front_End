@@ -13,7 +13,15 @@ module.exports = {
     ],
   },
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        newGreen: '#97BF0F',
+      },
+      maxWidth: {
+        'custom': '1100px',
+        'sidewidth': '10%',
+      },
+    },
   },
   plugins: [
     daisyUI,
