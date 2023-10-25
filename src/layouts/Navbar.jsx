@@ -77,7 +77,7 @@ export default function Navbar({ dark, data }) {
           <a href="#gg" className="hidden text-black hover:text-newGreen text-l md:block">
             <BiLogoVimeo />
           </a>
-          <label htmlFor="inputId" className="swap swap-rotate">
+          <label htmlFor="checkbox" className="swap swap-rotate">
             <input
               type="checkbox"
               onChange={dark}

@@ -1,4 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /** @type {import('tailwindcss').Config} */
+const daisyUI = require('daisyui');
 
 module.exports = {
   content: [
@@ -22,5 +24,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    daisyUI,
+  ],
 };
