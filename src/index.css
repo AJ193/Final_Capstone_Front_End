@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  /* outline: 1px solid red; */
-}
-
 .home_banner {
   background-position: 50%;
   background-image: url('assets/images/car_banner.jpg');
