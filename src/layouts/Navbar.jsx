@@ -1,6 +1,6 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import { Dialog } from '@headlessui/react';
 import {
@@ -77,7 +77,7 @@ export default function Navbar({ dark, data }) {
           <a href="#gg" className="hidden text-black hover:text-newGreen text-l md:block">
             <BiLogoVimeo />
           </a>
-          <label htmlFor="checkbox" className="swap swap-rotate">
+          <label className="swap swap-rotate">
             <input
               type="checkbox"
               onChange={dark}
@@ -143,6 +143,6 @@ Navbar.defaultProps = {
 };
 
 Navbar.propTypes = {
-  dark: PropTypes.bool,
-  data: PropTypes.func,
+  dark: PropTypes.func,
+  data: PropTypes.bool,
 };
