@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Home() {
   return (
@@ -14,22 +15,22 @@ function Home() {
               </h1>
               <p className="mt-2 mb-16 text-2xl">Find the perfect for your next adventure</p>
               <div className="space-x-5 opacity-100">
-                <a
-                  href="#lll"
+                <Link
+                  to="/Signup"
                   className="hover:bg-newGreen rounded border-2 border-neutral-50 px-[46px] pt-[14px] pb-[12px] text-sm font-medium uppercase leading-normal"
                   data-te-ripple-init
                   data-te-ripple-color="light"
                 >
                   Get started
-                </a>
-                <a
-                  href="#lll"
+                </Link>
+                <Link
+                  to="/Signup"
                   className="hover:bg-newGreen rounded border-2 border-neutral-50 px-[46px] pt-[14px] pb-[12px] text-sm font-medium uppercase leading-normal"
                   data-te-ripple-init
                   data-te-ripple-color="light"
                 >
                   Login
-                </a>
+                </Link>
               </div>
             </div>
           </div>
