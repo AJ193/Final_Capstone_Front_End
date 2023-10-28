@@ -1,10 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Alert from '../layouts/Alert';
 
-function SignUp() {
+function Register() {
   const navigate = useNavigate();
   const [alert, setAlert] = useState('');
   const [formData, setFormData] = useState({
@@ -32,8 +33,11 @@ function SignUp() {
       }, 3000);
     } else if (formData.password !== formData.confirmPassword) {
       setAlert('Passwords do not match.');
+      // Clear the alert after 3 seconds
+      setTimeout(() => {
+        setAlert('');
+      }, 3000);
     } else {
-      // Make an API request to the register endpoint
       try {
         const response = await axios.post('http://localhost:5000/signup', {
           user: {
@@ -41,11 +45,16 @@ function SignUp() {
             password: formData.password,
             name: formData.fullName,
           },
+          withCredentials: true,
         });
 
         if (response.status === 200) {
           // User registration was successful
           setAlert('User registration was successful!');
+          // Clear the alert after 3 seconds
+          setTimeout(() => {
+            setAlert('');
+          }, 3000);
           // Clear the form fields
           setFormData({
             fullName: '',
@@ -53,8 +62,8 @@ function SignUp() {
             password: '',
             confirmPassword: '',
           });
-          // Navigate to login
-          navigate('/Login');
+          // Redirect to the login page with a message
+          navigate('/login', { state: { message: 'Registration successful. You can now log in.' } });
         } else {
           // User registration failed
           setAlert('User registration failed. Please try again later.');
@@ -66,14 +75,9 @@ function SignUp() {
     }
   };
 
-  useEffect(() => () => {
-    setAlert('');
-  },
-  []);
-
   return (
-    <section className="flex flex-col justify-center items-center h-full">
-      <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
+    <section className="mx-auto h-full px-5">
+      <div className="my-10 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12 mx-auto md:my-20">
         {alert && <Alert msg={alert} />}
         <form onSubmit={handleSubmit}>
           <div className="relative mb-6 space-y-3">
@@ -127,7 +131,7 @@ function SignUp() {
 
           <div className="text-center lg:text-left">
             <button
-              type="submit" // Change the button type to "submit" to trigger the form's onSubmit event
+              type="submit"
               className="inline-block rounded bg-newGreen px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white"
             >
               Register
@@ -140,7 +144,7 @@ function SignUp() {
                 to="/login"
                 className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
               >
-                Sign up
+                Login
               </Link>
             </p>
           </div>
@@ -150,4 +154,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default Register;

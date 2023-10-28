@@ -28,7 +28,7 @@ export default function Navbar({ dark, data }) {
   return (
     <>
       {/* Sidebar */}
-      <div className="fixed p-4 w-full h-14 bg-gray-50 flex items-center justify-between dark:bg-neutral md:flex-col md:w-2/12 md:h-screen md:p-0">
+      <div className="fixed z-30 p-4 w-full h-14 bg-gray-50 flex items-center justify-between dark:bg-neutral md:flex-col md:w-2/12 md:h-screen md:p-0">
         {/* Mobile menu */}
         <div className="flex md:hidden">
           <button

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { RequireAuth } from 'react-auth-kit';
 import Navbar from './layouts/Navbar';
+import Register from './pages/Register';
 import Home from './pages/Home';
 import Cars from './pages/Cars';
 import About from './pages/About';
@@ -43,11 +45,19 @@ function App() {
           />
           <Route
             path="/about"
-            element={<About />}
+            element={(
+              <RequireAuth loginPath="/login">
+                <About />
+              </RequireAuth>
+            )}
           />
           <Route
             path="/signup"
             element={<SignUp />}
+          />
+          <Route
+            path="/register"
+            element={<Register />}
           />
           <Route
             path="/login"

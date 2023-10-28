@@ -1,79 +1,99 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useSignIn, useIsAuthenticated } from 'react-auth-kit';
+import axios from 'axios';
 import Alert from '../layouts/Alert';
 
 function Login() {
+  const isAuthenticated = useIsAuthenticated();
+  const navigate = useNavigate();
+  const signIn = useSignIn();
+  const location = useLocation();
+  const message = location.state?.message || null;
   const [alert, setAlert] = useState('');
+
+  useEffect(() => {
+    // Check if the user is authenticated
+    if (isAuthenticated()) {
+      // Perform the navigation
+      navigate('/about');
+    }
+  }, []);
+
+  // Clear registration message
+  useEffect(() => {
+    if (message) {
+      setAlert(decodeURIComponent(message));
+      setTimeout(() => {
+        setAlert('');
+      }, 5000);
+    }
+  }, [message]);
+
+  // Login form data
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-  let accessToken;
-  let refreshToken = localStorage.getItem('refresh_token');
-  let resourceOwner;
-
-  // const history = useNavigate();
-  async function handleAuthResponse(response) {
-    const data = await response.json();
-    localStorage.setItem('resource_owner', JSON.stringify(data.resource_owner));
-    localStorage.setItem('refresh_token', data.refresh_token);
-    accessToken = data.token;
-    refreshToken = data.refresh_token;
-    resourceOwner = data.resource_owner;
-  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Submit login form
   const handleSubmit = async (e) => {
+    e.preventDefault();
+
     // Check if email or password is empty
     if (!formData.email || !formData.password) {
+      // Handle the case when a field is empty, e.g., display an alert or error message
       setAlert('Please fill in both email and password fields.');
+      // Clear the alert after 3 seconds
       setTimeout(() => {
         setAlert('');
       }, 3000);
-      return;
-    }
-
-    // Make an API request to the login endpoint
-    const response = await fetch('http://localhost:5000/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        user: {
-          email: formData.email,
-          password: formData.password,
-        },
-      }),
-    });
-
-    // Handle the response from the API
-    if (response.ok) {
-      // Login was successful
-      setAlert('Login successful!');
-      // Store the token in local storage
-      await handleAuthResponse(response);
-      // Redirect the user to the home page
-      window.location.href = '/';
     } else {
-      // Login failed
-      setAlert('Login failed. Please try again.');
+      // Continue with form submission or other actions
+      try {
+        const response = await axios.post('http://localhost:5000/login', {
+          user: {
+            email: formData.email,
+            password: formData.password,
+          },
+        });
+
+        if (response.status === 200) {
+          signIn({
+            token: response.data.token,
+            expiresIn: 3600,
+            tokenType: 'Bearer',
+            authState: { email: formData.email, name: formData.name },
+          });
+          navigate('/about', { state: { message: 'Login successful.' } });
+        } else {
+          // User registration failed
+          setAlert('User registration failed');
+        }
+      } catch (error) {
+        setAlert('User not avaliable');
+      }
     }
   };
+  setTimeout(() => {
+    setAlert('');
+  }, 3000);
 
   return (
-    <section className="flex flex-col justify-center items-center h-full">
-      <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
+    <section className="mx-auto h-full px-5">
+      <div className="my-10 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12 mx-auto md:my-20">
         {alert && <Alert msg={alert} />}
         <form onSubmit={handleSubmit}>
           <div className="relative mb-6 space-y-3">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email" className="">
+              Email
+            </label>
             <input
               type="email"
               className="input input-bordered w-full"
@@ -85,7 +105,9 @@ function Login() {
             />
           </div>
           <div className="relative mb-6 space-y-3">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" className="">
+              Password
+            </label>
             <input
               type="password"
               className="input input-bordered w-full"

@@ -6,6 +6,7 @@
 /.pnp
 .pnp.js
 src/layouts/NewNav.jsx
+src/pages/Register.jsx
 
 # testing
 /coverage
