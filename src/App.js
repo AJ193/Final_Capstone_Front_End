@@ -5,14 +5,11 @@ import Navbar from './layouts/Navbar';
 import Home from './pages/Home';
 import Cars from './pages/Cars';
 import About from './pages/About';
-<<<<<<< Updated upstream
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
-=======
 import Reservations from './components/AddReservations';
 import MyReservations from './components/Reservations';
 import AddCar from './pages/AddCar';
->>>>>>> Stashed changes
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -52,7 +49,6 @@ function App() {
             path="/about"
             element={<About />}
           />
-<<<<<<< Updated upstream
           {/* <Route
             path="/about"
             element={(
@@ -68,7 +64,7 @@ function App() {
           <Route
             path="/login"
             element={<Login />}
-=======
+          />
           <Route
             path="/AddReservations.jsx"
             element={<Reservations />}
@@ -80,7 +76,6 @@ function App() {
           <Route
             path="/AddCar.jsx"
             element={<AddCar />}
->>>>>>> Stashed changes
           />
         </Routes>
       </div>
