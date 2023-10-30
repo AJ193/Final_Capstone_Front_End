@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { TOKENKEY } from '../../util/auth';
+// import { TOKENKEY } from '../../util/auth';
 
 const baseUrl = 'http://localhost:5000/cars';
 
 const initialState = {
   cars: [],
+  selectedCar: null,
   isLoading: false,
   error: null,
 };
@@ -19,29 +20,38 @@ export const fetchCars = createAsyncThunk('cars/fetchCars', async () => {
   }
 });
 
-export const addCar = createAsyncThunk(
-  'cars/addCar',
-  async (car) => {
-    const response = await axios.post(baseUrl, car.car, {
-      headers: {
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem(TOKENKEY))}`,
-      },
-    });
-    return response.data;
+export const fetchSingleCar = createAsyncThunk(
+  'coin/fetchSingleCar',
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/cars/${id}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Something went wrong');
+    }
   },
 );
 
-export const deleteCar = createAsyncThunk(
-  'cars/deleteCar',
-  async (id) => {
-    await axios.delete(`${baseUrl}/${id}`, {
-      headers: {
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem(TOKENKEY))}`,
-      },
-    });
-    return id;
-  },
-);
+export const addNewCar = createAsyncThunk('cars/addNewCar', async (formData) => {
+  try {
+    const response = await axios.post('http://localhost:5000/cars', formData);
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+});
+
+// export const deleteCar = createAsyncThunk(
+//   'cars/deleteCar',
+//   async (id) => {
+//     await axios.delete(`${baseUrl}/${id}`, {
+//       headers: {
+//         Authorization: `Bearer ${JSON.parse(localStorage.getItem(TOKENKEY))}`,
+//       },
+//     });
+//     return id;
+//   },
+// );
 
 const carsSlice = createSlice({
   name: 'cars',
@@ -58,7 +68,7 @@ const carsSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
-        state.cars = action.payload;
+        state.cars = action.payload.data;
         state.isLoading = false;
         state.error = null;
       })
@@ -66,22 +76,45 @@ const carsSlice = createSlice({
         state.isLoading = false;
         state.error = action.error.message;
       })
-      .addCase(deleteCar.fulfilled, (state, action) => ({
-        ...state,
-        cars: state.cars.filter((car) => car.id !== action.payload),
-      }))
-      .addCase(addCar.pending, (state) => {
+      .addCase(fetchSingleCar.pending, (state) => {
         state.isLoading = true;
-      })
-      .addCase(addCar.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message;
-      })
-      .addCase(addCar.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.error = null;
+      })
+      .addCase(fetchSingleCar.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.selectedCar = action.payload.data;
+      })
+      .addCase(fetchSingleCar.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(addNewCar.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(addNewCar.fulfilled, (state, action) => {
+        state.status = 'succeeded';
         state.cars.push(action.payload);
+      })
+      .addCase(addNewCar.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
       });
+    // .addCase(deleteCar.fulfilled, (state, action) => ({
+    //   ...state,
+    //   cars: state.cars.filter((car) => car.id !== action.payload),
+    // }));
+    // .addCase(addCar.pending, (state) => {
+    //   state.isLoading = true;
+    // })
+    // .addCase(addCar.rejected, (state, action) => {
+    //   state.isLoading = false;
+    //   state.error = action.error.message;
+    // })
+    // .addCase(addCar.fulfilled, (state, action) => {
+    //   state.isLoading = false;
+    //   state.error = null;
+    //   state.cars.push(action.payload);
+    // });
   },
 });
 

@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Reservations from './components/AddReservations';
 import MyReservations from './components/Reservations';
 import AddCar from './pages/AddCar';
+import CarDetails from './pages/CarDetails';
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -44,6 +45,10 @@ function App() {
           <Route
             path="/cars"
             element={<Cars />}
+          />
+          <Route
+            path="/car_details/:id"
+            element={<CarDetails />}
           />
           <Route
             path="/about"

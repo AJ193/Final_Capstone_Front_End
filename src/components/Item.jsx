@@ -1,10 +1,10 @@
-import styled from 'styled-components';
-
-export default styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  font-size: 4em;
-`;
+export default function formatTimestamp(timestamp) {
+  const date = new Date(timestamp);
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour12: false, // Use 24-hour format
+  };
+  return date.toLocaleString(undefined, options);
+}
