@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { TOKENKEY } from '../../util/auth';
 
-const baseUrl = '';
+const baseUrl = '/cars/models';
 
 const initialState = {
   models: [],

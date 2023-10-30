@@ -11,13 +11,10 @@ import Loader from '../components/loader/Loader';
 const AddCarPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const models = useSelector((state) => state.models.models);
   const isLoading = useSelector((state) => state.cars.isLoading);
   const error = useSelector((state) => state.cars.error);
-  const cars = useSelector((state) => state.cars.cars);
 
   const [isImageValid, setIsImageValid] = useState(true);
-  const [isValidPlate, setIsValidPlate] = useState(true);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -72,33 +69,11 @@ const AddCarPage = () => {
     }));
   };
 
-  const handleModelChange = (e) => {
-    const modelId = parseInt(e.target.value, 10);
-    setFormData((prevData) => ({
-      ...prevData,
-      modelId,
-    }));
-  };
-
   const handleImageChange = (field, file) => {
     setFormData((prevData) => ({
       ...prevData,
       [field]: file,
     }));
-  };
-
-  const validatePlate = () => {
-    const plate = formData.plate_number;
-    const car = cars.find((car) => car.plate_number === plate);
-    if (car) {
-      setIsValidPlate(false);
-    } else {
-      setIsValidPlate(true);
-    }
-  };
-
-  const handlePlateBlur = () => {
-    validatePlate();
   };
 
   const validateImage = () => {
@@ -135,38 +110,14 @@ const AddCarPage = () => {
             <label htmlFor="model_id" className="block font-medium">
               Select Model:
             </label>
-            <select
-              id="model_id"
-              className="border border-gray-300 rounded w-full"
-              onChange={handleModelChange}
-              value={formData.model_id}
-              required
-            >
-              <option value="">-- Select a Model --</option>
-              {models.map((model) => (
-                <option key={model.id} value={model.id}>
-                  {model.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="carDetails" className="block font-medium">
-              Car Plate:
-            </label>
             <input
               type="text"
-              id="plate_number"
-              className={`border border-gray-300 rounded w-full ${!isValidPlate ? 'border-red-500' : ''}`}
-              onChange={(e) => handleInputChange('plate_number', e.target.value)}
-              onBlur={handlePlateBlur}
-              value={formData.plate_number}
+              id="name"
+              className="border border-gray-300 rounded w-full "
+              onChange={(e) => handleInputChange('name', e.target.value)}
+              value={formData.name}
               required
             />
-            {!isValidPlate && (
-              <p className="text-red-500 text-sm">The plate number should be unique</p>
-            )}
           </div>
 
           <div className="mb-4">
