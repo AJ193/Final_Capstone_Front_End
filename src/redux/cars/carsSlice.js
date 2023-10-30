@@ -89,14 +89,15 @@ const carsSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(addNewCar.pending, (state) => {
-        state.status = 'loading';
+        state.isLoading = true;
       })
       .addCase(addNewCar.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.isLoading = false;
+        state.error = null;
         state.cars.push(action.payload);
       })
       .addCase(addNewCar.rejected, (state, action) => {
-        state.status = 'failed';
+        state.isLoading = false;
         state.error = action.error.message;
       });
     // .addCase(deleteCar.fulfilled, (state, action) => ({

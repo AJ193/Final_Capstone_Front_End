@@ -11,7 +11,7 @@ function AddCar() {
   const [alert, setAlert] = useState('');
   const [formData, setFormData] = useState({
     model: '',
-    imageUrl: '',
+    Picture: '',
     year: '',
   });
   const [formErrors, setFormErrors] = useState({});
@@ -31,8 +31,8 @@ function AddCar() {
     if (!formData.model) {
       errors.model = 'Model is required';
     }
-    if (!formData.imageUrl) {
-      errors.imageUrl = 'Image URL is required';
+    if (!formData.Picture) {
+      errors.Picture = 'Image URL is required';
     }
     if (!formData.year) {
       errors.year = 'Year is required';
@@ -45,7 +45,7 @@ function AddCar() {
           // Handle success, e.g., clear the form
           setFormData({
             model: '',
-            imageUrl: '',
+            Picture: '',
             year: '',
           });
           setFormErrors({});
@@ -110,17 +110,17 @@ function AddCar() {
               </label>
               <div className="mt-2">
                 <input
-                  type="text"
+                  type="file"
                   placeholder="Type here"
-                  className={`input input-bordered w-full ${
-                    formErrors.imageUrl ? 'input-error' : ''
+                  className={`file-input file-input-ghost input-bordered w-full ${
+                    formErrors.Picture ? 'input-error' : ''
                   }`}
-                  name="imageUrl"
-                  value={formData.imageUrl}
+                  name="Picture"
+                  value={formData.Picture}
                   onChange={handleChange}
                 />
-                {formErrors.imageUrl && (
-                  <p className="text-red-500">{formErrors.imageUrl}</p>
+                {formErrors.Picture && (
+                  <p className="text-red-500">{formErrors.Picture}</p>
                 )}
               </div>
             </div>
@@ -154,7 +154,7 @@ function AddCar() {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-newGreen px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-lime-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600"
               >
-                Sign in
+                Submit
               </button>
             </div>
           </form>

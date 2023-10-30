@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
@@ -63,40 +64,23 @@ function Cars() {
           responsive={responsive}
         >
           {cars.map((car) => (
-            <div key={car.id} className="space-y-5">
+            <div key={car.id} className="my-20">
               <Link
-                key={car.id}
                 className="self-end px-5"
                 to={`/car_details/${car.id}`}
               >
-                <div className="relative bg-gray-200 rounded-full w-48 h-48 my-20 mx-auto md:h-72 md:w-72">
-                  <img src={car.picture} className="h-full object-fill" alt={car.model} />
+                <figure className="relative bg-gray-200 rounded-full w-48 h-48 mx-auto md:h-72 md:w-72">
+                  <img src={car.picture} alt={car.model} className="h-full object-fil object-contain absolute" />
+                </figure>
+                <div className="card-body space-y-3">
+                  <h2 className="card- text-center">{ car.model }</h2>
+                  <div className="card-actions justify-center">
+                    <div className="border border-gray-300 p-2 rounded-full"><BiLogoFacebook /></div>
+                    <div className="border border-gray-300 p-2 rounded-full"><BiLogoInstagram /></div>
+                    <div className="border border-gray-300 p-2 rounded-full"><BiLogoTwitter /></div>
+                  </div>
                 </div>
-                <span className="text-center">
-                  <h3 className="">{car.model}</h3>
-                </span>
               </Link>
-              <hr className="mx-auto h-0.5 w-52 border-dashed border-t-2 border-gray-400 opacity-100 dark:opacity-50" />
-              <article className="flex justify-center space-x-4 items-center">
-                <a
-                  href="#fac"
-                  className="inline-block rounded-full p-3 text-s font-medium border-2 border-gray-500 text-gray-500 shadow-md transition duration-150 ease-in-out hover:shadow-lg active:shadow-lg"
-                >
-                  <BiLogoFacebook />
-                </a>
-                <a
-                  href="#fac"
-                  className="inline-block rounded-full p-3 text-s font-medium border-2 border-gray-500 text-gray-500 shadow-md transition duration-150 ease-in-out hover:shadow-lg active:shadow-lg"
-                >
-                  <BiLogoInstagram />
-                </a>
-                <a
-                  href="#fac"
-                  className="inline-block rounded-full p-3 text-s font-medium border-2 border-gray-500 text-gray-500 shadow-md transition duration-150 ease-in-out hover:shadow-lg active:shadow-lg"
-                >
-                  <BiLogoTwitter />
-                </a>
-              </article>
             </div>
           ))}
         </Carousel>
