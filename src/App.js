@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { RequireAuth } from 'react-auth-kit';
+// import { RequireAuth } from 'react-auth-kit';
 import Navbar from './layouts/Navbar';
 import Register from './pages/Register';
 import Home from './pages/Home';
@@ -45,12 +45,16 @@ function App() {
           />
           <Route
             path="/about"
+            element={<About />}
+          />
+          {/* <Route
+            path="/about"
             element={(
               <RequireAuth loginPath="/login">
                 <About />
               </RequireAuth>
             )}
-          />
+          /> */}
           <Route
             path="/signup"
             element={<SignUp />}

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import {
@@ -6,11 +7,16 @@ import {
   BiLogoTwitter,
   BiLogoInstagram,
 } from 'react-icons/bi';
+import Alert from '../layouts/Alert';
 import mini from '../assets/images/mini.png';
 import retro from '../assets/images/retro.png';
 import small from '../assets/images/small.png';
 
 function Cars() {
+  const location = useLocation();
+  const message = location.state?.message || null;
+  const [alert, setAlert] = useState('');
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -51,9 +57,20 @@ function Cars() {
     },
   ];
 
+  // Clear registration message
+  useEffect(() => {
+    if (message) {
+      setAlert(decodeURIComponent(message));
+      setTimeout(() => {
+        setAlert('');
+      }, 3000);
+    }
+  }, [message]);
+
   return (
     <>
       <section className="grid grid-col place-content-center items-center p-4">
+        {alert && <Alert msg={alert} />}
         <h1 className="text-center text-4xl font-extrabold">LATEST MODELS</h1>
         <p className="text-center text-gray-500">Please select a car model</p>
         <Carousel

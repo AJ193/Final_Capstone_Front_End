@@ -64,17 +64,20 @@ function Login() {
           },
         });
 
-        if (response.status === 200) {
-          signIn({
-            token: response.data.token,
-            expiresIn: 3600,
-            tokenType: 'Bearer',
-            authState: { email: formData.email, name: formData.name },
-          });
-          navigate('/about', { state: { message: 'Login successful.' } });
+        const uid = response.data.status.data.user.id;
+        const uname = response.data.status.data.user.name;
+        const tokenn = response.data.status.data.jwt;
+
+        if (signIn({
+          token: tokenn,
+          expiresIn: 3600,
+          tokenType: 'Bearer',
+          authState: { email: formData.email, name: uname, id: uid },
+        })) {
+          // Redirect or do something upon successful sign-in
+          navigate('/cars', { state: { message: 'Login successful.' } });
         } else {
-          // User registration failed
-          setAlert('User registration failed');
+          setAlert('Wrong login details');
         }
       } catch (error) {
         setAlert('User not avaliable');
