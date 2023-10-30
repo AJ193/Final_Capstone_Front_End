@@ -18,8 +18,16 @@ import {
 
 const navigation = [
   { name: 'Home', href: '/' },
+<<<<<<< Updated upstream
   { name: 'About', href: '/about' },
   { name: 'Cars', href: '/cars' },
+=======
+  { name: 'Cars', href: 'cars' },
+  { name: 'About', href: 'about' },
+  { name: 'Reservation', href: 'AddReservations.jsx' },
+  { name: 'MyReservations', href: 'Reservations.jsx' },
+  { name: 'AddCar', href: 'AddCar.jsx' },
+>>>>>>> Stashed changes
 ];
 
 export default function Navbar({ dark, data }) {
