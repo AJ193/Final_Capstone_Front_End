@@ -55,7 +55,7 @@ function Login() {
         setAlert('');
       }, 3000);
     } else {
-      // Continue with form submission or other actions
+      // Continue with form submission or other action
       try {
         const response = await axios.post('http://localhost:5000/login', {
           user: {
