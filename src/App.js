@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+// import { RequireAuth } from 'react-auth-kit';
 import Navbar from './layouts/Navbar';
 import Home from './pages/Home';
 import Cars from './pages/Cars';
 import About from './pages/About';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -42,6 +45,22 @@ function App() {
           <Route
             path="/about"
             element={<About />}
+          />
+          {/* <Route
+            path="/about"
+            element={(
+              <RequireAuth loginPath="/login">
+                <About />
+              </RequireAuth>
+            )}
+          /> */}
+          <Route
+            path="/signup"
+            element={<SignUp />}
+          />
+          <Route
+            path="/login"
+            element={<Login />}
           />
         </Routes>
       </div>

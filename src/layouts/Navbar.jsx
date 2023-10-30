@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useIsAuthenticated, useSignOut } from 'react-auth-kit';
 import PropTypes from 'prop-types';
 import { Dialog } from '@headlessui/react';
 import {
@@ -13,22 +14,29 @@ import {
   BiLogoFacebook,
   BiLogoTwitter,
   BiLogoPinterestAlt,
-  BiLogoVimeo,
 } from 'react-icons/bi';
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'Cars', href: 'cars' },
-  { name: 'About', href: 'about' },
+  { name: 'About', href: '/about' },
+  { name: 'Cars', href: '/cars' },
 ];
 
 export default function Navbar({ dark, data }) {
+  const isAuthenticated = useIsAuthenticated();
+  const singOut = useSignOut();
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const logout = () => {
+    singOut();
+    navigate('/login', { state: { message: 'Logout successful.' } });
+  };
 
   return (
     <>
       {/* Sidebar */}
-      <div className="fixed p-4 w-full h-14 bg-gray-50 flex items-center justify-between dark:bg-neutral md:flex-col md:w-2/12 md:h-screen md:p-0">
+      <div className="fixed z-30 p-4 w-full h-14 bg-gray-50 flex items-center justify-between dark:bg-neutral md:flex-col md:w-2/12 md:h-screen md:p-0">
         {/* Mobile menu */}
         <div className="flex md:hidden">
           <button
@@ -61,21 +69,30 @@ export default function Navbar({ dark, data }) {
               {item.name}
             </Link>
           ))}
+          {isAuthenticated() && (
+            <button
+              type="button"
+              onClick={logout}
+              className="text-l font-bold leading-6 py-2 pr-16 pl-5 text-black hover:bg-newGreen hover:text-white
+              dark:text-white "
+              data-te-ripple-init
+              data-te-ripple-color="light"
+            >
+              Logout
+            </button>
+          )}
         </nav>
 
         {/* Social Links */}
         <div className="space-x-4 flex flex-wrap justify-center items-center md:p-4">
-          <a href="#gg" className="hidden text-black hover:text-newGreen text-l md:block">
+          <a href="#gg" className="hidden text-black hover:text-newGreen text-xl md:block">
             <BiLogoFacebook />
           </a>
-          <a href="#gg" className="hidden text-black hover:text-newGreen text-l md:block">
+          <a href="#gg" className="hidden text-black hover:text-newGreen text-xl md:block">
             <BiLogoTwitter />
           </a>
-          <a href="#gg" className="hidden text-black hover:text-newGreen text-l md:block">
+          <a href="#gg" className="hidden text-black hover:text-newGreen text-xl md:block">
             <BiLogoPinterestAlt />
-          </a>
-          <a href="#gg" className="hidden text-black hover:text-newGreen text-l md:block">
-            <BiLogoVimeo />
           </a>
           <label className="swap swap-rotate">
             <input
@@ -84,9 +101,9 @@ export default function Navbar({ dark, data }) {
               checked={data ? 'dark' : ''}
             />
             {/* sun icon */}
-            <SunIcon className="text-newGreen swap-on w-4" />
+            <SunIcon className="text-newGreen swap-on w-5" />
             {/* moon icon */}
-            <MoonIcon className="swap-off  w-4" />
+            <MoonIcon className="swap-off  w-5" />
           </label>
         </div>
       </div>
