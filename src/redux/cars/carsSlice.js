@@ -24,7 +24,7 @@ export const fetchSingleCar = createAsyncThunk(
   'coin/fetchSingleCar',
   async (id, thunkAPI) => {
     try {
-      const response = await axios.get(`http://localhost:5000/cars/${id}`);
+      const response = await axios.get(`${baseUrl}/${id}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue('Something went wrong');
@@ -34,7 +34,7 @@ export const fetchSingleCar = createAsyncThunk(
 
 export const addNewCar = createAsyncThunk('cars/addNewCar', async (formData) => {
   try {
-    const response = await axios.post('http://localhost:5000/cars', formData);
+    const response = await axios.post(`${baseUrl}`, formData);
     return response.data;
   } catch (error) {
     throw error.response.data;

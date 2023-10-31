@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-// import { RequireAuth } from 'react-auth-kit';
+import { RequireAuth } from 'react-auth-kit';
 import Navbar from './layouts/Navbar';
 import Home from './pages/Home';
 import Cars from './pages/Cars';
@@ -55,14 +55,6 @@ function App() {
             path="/about"
             element={<About />}
           />
-          {/* <Route
-            path="/about"
-            element={(
-              <RequireAuth loginPath="/login">
-                <About />
-              </RequireAuth>
-            )}
-          /> */}
           <Route
             path="/signup"
             element={<SignUp />}
@@ -72,20 +64,36 @@ function App() {
             element={<Login />}
           />
           <Route
-            path="/AddReservations.jsx"
-            element={<Reservations />}
+            path="/reservations"
+            element={(
+              <RequireAuth loginPath="/login">
+                <MyReservations />
+              </RequireAuth>
+            )}
           />
           <Route
-            path="/Reservations.jsx"
-            element={<MyReservations />}
+            path="/add_reservation"
+            element={(
+              <RequireAuth loginPath="/login">
+                <Reservations />
+              </RequireAuth>
+            )}
           />
           <Route
-            path="/AddCar.jsx"
-            element={<AddCar />}
+            path="/add_car"
+            element={(
+              <RequireAuth loginPath="/login">
+                <AddCar />
+              </RequireAuth>
+            )}
           />
           <Route
-            path="/DeleteCar.jsx"
-            element={<DeleteCar />}
+            path="/delete_car"
+            element={(
+              <RequireAuth loginPath="/login">
+                <DeleteCar />
+              </RequireAuth>
+            )}
           />
         </Routes>
       </div>
