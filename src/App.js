@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Reservations from './components/AddReservations';
 import MyReservations from './components/Reservations';
 import AddCar from './pages/AddCar';
+import DeleteCar from './pages/DeleteCar';
 import CarDetails from './pages/CarDetails';
 
 function App() {
@@ -81,6 +82,10 @@ function App() {
           <Route
             path="/AddCar.jsx"
             element={<AddCar />}
+          />
+          <Route
+            path="/DeleteCar.jsx"
+            element={<DeleteCar />}
           />
         </Routes>
       </div>

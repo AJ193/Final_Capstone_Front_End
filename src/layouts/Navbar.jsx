@@ -23,6 +23,7 @@ const navigation = [
   { name: 'Reservation', href: 'AddReservations.jsx' },
   { name: 'MyReservations', href: 'Reservations.jsx' },
   { name: 'AddCar', href: 'AddCar.jsx' },
+  { name: 'DeleteCar', href: 'DeleteCar.jsx' },
 ];
 
 export default function Navbar({ dark, data }) {

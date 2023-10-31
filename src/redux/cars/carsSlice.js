@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-// import { TOKENKEY } from '../../util/auth';
+import { TOKENKEY } from '../../util/auth';
 
 const baseUrl = 'http://localhost:5000/cars';
 
@@ -41,17 +41,17 @@ export const addNewCar = createAsyncThunk('cars/addNewCar', async (formData) => 
   }
 });
 
-// export const deleteCar = createAsyncThunk(
-//   'cars/deleteCar',
-//   async (id) => {
-//     await axios.delete(`${baseUrl}/${id}`, {
-//       headers: {
-//         Authorization: `Bearer ${JSON.parse(localStorage.getItem(TOKENKEY))}`,
-//       },
-//     });
-//     return id;
-//   },
-// );
+export const deleteCar = createAsyncThunk(
+  'cars/deleteCar',
+  async (id) => {
+    await axios.delete(`${baseUrl}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem(TOKENKEY))}`,
+      },
+    });
+    return id;
+  },
+);
 
 const carsSlice = createSlice({
   name: 'cars',
