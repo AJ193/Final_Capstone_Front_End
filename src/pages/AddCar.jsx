@@ -75,7 +75,7 @@ function AddCar() {
         })
         .catch((error) => {
           // Handle error
-          console.error('Error:', error);
+          setAlert('Error:', error);
         });
     } else {
       // Set validation errors

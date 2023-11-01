@@ -19,7 +19,7 @@ function Login() {
       // Perform the navigation
       navigate('/about');
     }
-  }, []);
+  }, [isAuthenticated, navigate]);
 
   // Clear registration message
   useEffect(() => {
