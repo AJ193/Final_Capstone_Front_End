@@ -93,7 +93,7 @@ export default function Navbar({ dark, data }) {
                 Reservations
               </Link>
               <Link
-                to="/add_reservations"
+                to="/add_reservation"
                 className="text-l font-bold leading-6 py-2 pr-16 pl-5 text-black hover:bg-newGreen hover:text-white
               dark:text-white "
               >

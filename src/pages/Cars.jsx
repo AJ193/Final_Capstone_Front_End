@@ -54,27 +54,28 @@ function Cars() {
 
   return (
     <>
-      <section className="grid grid-col place-content-center items-center p-4">
+      <section className=" p-4 w-full mx-auto py-20">
         {alert && <Alert msg={alert} />}
         <h1 className="text-center text-4xl font-extrabold">LATEST MODELS</h1>
         <p className="text-center text-gray-500">Please select a car model</p>
         <Carousel
+          className="w-full"
           infinite
           autoPlay
           responsive={responsive}
         >
           {cars.map((car) => (
-            <div key={car.id} className="my-20">
+            <div key={car.id}>
               <Link
-                className="self-end px-5"
+                className="px-5 space-y-5"
                 to={`/car_details/${car.id}`}
               >
                 <figure className="relative bg-gray-200 rounded-full w-48 h-48 mx-auto md:h-72 md:w-72">
                   <img src={car.picture} alt={car.model} className="h-full object-fil object-contain absolute" />
                 </figure>
-                <div className="card-body space-y-3">
-                  <h2 className="card- text-center">{ car.model }</h2>
-                  <div className="card-actions justify-center">
+                <div className="w-48 mx-auto md:w-72 space-y-5">
+                  <h2 className="text-center">{ car.model }</h2>
+                  <div className="reletive flex justify-center items-center space-x-4">
                     <div className="border border-gray-300 p-2 rounded-full"><BiLogoFacebook /></div>
                     <div className="border border-gray-300 p-2 rounded-full"><BiLogoInstagram /></div>
                     <div className="border border-gray-300 p-2 rounded-full"><BiLogoTwitter /></div>

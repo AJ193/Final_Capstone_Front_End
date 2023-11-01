@@ -1,9 +1,10 @@
 import React from 'react';
-import { useIsAuthenticated } from 'react-auth-kit';
+import { useIsAuthenticated, useAuthUser } from 'react-auth-kit';
 import { Link } from 'react-router-dom';
 
 function Home() {
   const isAuthenticated = useIsAuthenticated();
+  const auth = useAuthUser();
 
   return (
     <>
@@ -14,9 +15,15 @@ function Home() {
           <div className="flex h-full items-center justify-center">
             <div className="px-6 text-center text-white md:px-12">
               <h1 className="mt-2 text-3xl font-bold md:text-4xl xl:text-6xl">
+                <span>
+                  {isAuthenticated() && (
+                    auth().name
+                  )}
+                </span>
+                <br />
                 Welcome to Car Rental
               </h1>
-              <p className="mt-2 mb-16 text-2xl">Find the perfect for your next adventure</p>
+              <p className="mt-2 mb-16 text-2xl">Find the perfect car for your next adventure</p>
               <div className="space-x-5 opacity-100">
                 {!isAuthenticated() && (
                   <>

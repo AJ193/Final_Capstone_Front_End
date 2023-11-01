@@ -32,11 +32,6 @@ function CarDetails() {
   return (
     <>
       {selectedCar && (
-        // <div>
-        //   <p>{selectedCar.model}</p>
-        //   <p>{selectedCar.year}</p>
-        //   <img src={selectedCar.picture} alt={selectedCar.model} />
-        // </div>
         <div className="flex flex-col-reverse gap-8 w-full md:flex-row justify-center h-full p-5">
           <div className="grid flex-grow place-items-center w-2/3 self-center">
             <img src={selectedCar.picture} alt={selectedCar.model} className="w-full" />
