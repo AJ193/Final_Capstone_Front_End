@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { RequireAuth } from 'react-auth-kit';
+import { useDispatch } from 'react-redux';
 import Navbar from './layouts/Navbar';
 import Home from './pages/Home';
 import Cars from './pages/Cars';
@@ -12,8 +13,10 @@ import MyReservations from './pages/Reservations';
 import AddCar from './pages/AddCar';
 import DeleteCar from './pages/DeleteCar';
 import CarDetails from './pages/CarDetails';
+import { fetchCars } from './redux/cars/carsSlice';
 
 function App() {
+  const dispatch = useDispatch();
   const [darkMode, setDarkMode] = useState(() => {
     const savedMode = localStorage.getItem('darkMode');
     return savedMode === 'dark';
@@ -28,6 +31,10 @@ function App() {
     const localTheme = localStorage.getItem('darkMode');
     document.querySelector('html').setAttribute('data-theme', localTheme);
   }, [darkMode]);
+
+  useEffect(() => {
+    dispatch(fetchCars());
+  }, [dispatch]);
 
   return (
     <div className={`${darkMode ? 'dark' : ''} grid grid-cols-12 h-screen`}>

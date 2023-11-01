@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthHeader } from 'react-auth-kit';
 import axios from 'axios';
 import { fetchCars } from '../redux/cars/carsSlice';
+import Alert from '../layouts/Alert';
 // import { createReservation } from '../redux/reservations/reservationSlice';
 
 function AddReservations() {
@@ -21,6 +22,7 @@ function AddReservations() {
     rentalDate: '',
     returnDate: '',
   });
+  const [alert, setAlert] = useState('');
   const [formErrors, setFormErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
 
@@ -79,21 +81,20 @@ function AddReservations() {
         });
 
         if (response.status === 201) {
-          // Successfully created a reservation (status code 201)
-          console.log('Reservation created successfully');
           setFormData({
             carBrand: '',
             rentalDate: '',
             returnDate: '',
           });
-          navigate('/reservations', { state: { message: 'Car added successfully.' } });
+          navigate('/reservations', { state: { message: 'Reservation added successfully.' } });
         } else {
-          console.error('Failed to create a reservation');
+          setAlert('Failed to create a reservation');
         }
       } catch (error) {
-        console.error('Failed to create a reservation:', error);
+        setAlert('Failed to create a reservation:', error);
       } finally {
         setSubmitting(false);
+        setAlert('Error submitting form');
       }
     }
   };
@@ -109,6 +110,7 @@ function AddReservations() {
             which some include test-riding facilities. If you wish to find out if a test-ride is available in your area,
             please use the selector below. London Book Now
           </p>
+          {alert && <Alert msg={alert} />}
           <form onSubmit={handleSubmit}>
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 text-gray-700">
               <div className="sm:col-span-3">

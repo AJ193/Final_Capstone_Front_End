@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { TOKENKEY } from '../../util/auth';
 
 const initialState = {
   reservations: [],
@@ -11,10 +10,10 @@ const initialState = {
 
 const baseUrl = 'http://localhost:5000/reservations';
 
-export const fetchReservations = createAsyncThunk('reservations/fetchReservations', async () => {
+export const fetchReservations = createAsyncThunk('reservations/fetchReservations', async (token) => {
   const response = await axios.get(baseUrl, {
     headers: {
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem(TOKENKEY))}`,
+      Authorization: token,
     },
   });
   const reservations = response.data;
@@ -23,35 +22,23 @@ export const fetchReservations = createAsyncThunk('reservations/fetchReservation
   return { reservations, disabledDates };
 });
 
-// export const createReservation = createAsyncThunk(
-//   'reservations/createReservation',
-//   async (reservationData, token) => {
-//     try {
-//       const response = await axios.post(baseUrl, reservationData, {
-//         headers: {
-//           Authorization: token,
-//         },
-//       });
-//       return response.data;
-//     } catch (error) {
-//       throw new Error('Failed to create a reservation'); // You can customize this error message.
-//     }
-//   },
-// );
+export const createReservation = createAsyncThunk(
+  'reservations/createReservation',
+  async (reservation, { getState }) => {
+    try {
+      const { token } = getState().auth; // Assuming you have an 'auth' slice for authentication
+      const response = await axios.post('http://localhost:5000/reservations', reservation, {
+        headers: {
+          Authorization: token,
+        },
+      });
 
-export const createReservation = createAsyncThunk('reservations/createReservation', async (reservationData, token) => {
-  try {
-    const response = await axios.post(baseUrl, reservationData, {
-      headers: {
-        Authorization: token,
-      },
-    });
-    console.log(response);
-    return response.data;
-  } catch (error) {
-    throw error.response.data;
-  }
-});
+      return response.data;
+    } catch (error) {
+      throw new Error('Failed to create a reservation');
+    }
+  },
+);
 
 const reservationSlice = createSlice({
   name: 'reservations',
@@ -76,6 +63,7 @@ const reservationSlice = createSlice({
       .addCase(createReservation.fulfilled, (state, action) => {
         state.reservationIsLoading = false; // Change 'isLoading' to 'reservationIsLoading'
         state.error = null;
+        console.log(action.payload.data);
         state.reservations.push(action.payload); // Push into 'reservations', not 'cars'
       })
       .addCase(createReservation.rejected, (state) => {

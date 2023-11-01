@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -9,12 +9,11 @@ import {
   BiLogoTwitter,
   BiLogoInstagram,
 } from 'react-icons/bi';
-import { fetchCars } from '../redux/cars/carsSlice';
 import Alert from '../layouts/Alert';
 
 function Cars() {
   const { cars } = useSelector((state) => state.cars);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const location = useLocation();
   const message = location.state?.message || null;
   const [alert, setAlert] = useState('');
@@ -38,9 +37,9 @@ function Cars() {
     },
   };
 
-  useEffect(() => {
-    dispatch(fetchCars());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchCars());
+  // }, [dispatch]);
 
   // Clear registration message
   useEffect(() => {
