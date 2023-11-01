@@ -47,9 +47,9 @@ function Reservations() {
         setReservationData(data);
       })
       .catch((error) => {
-        console.error('Error:', error);
+        setAlert('Error:', error);
       });
-  }, []);
+  }, [token]);
 
   return (
     <>

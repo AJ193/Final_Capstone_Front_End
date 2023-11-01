@@ -63,7 +63,6 @@ const reservationSlice = createSlice({
       .addCase(createReservation.fulfilled, (state, action) => {
         state.reservationIsLoading = false; // Change 'isLoading' to 'reservationIsLoading'
         state.error = null;
-        console.log(action.payload.data);
         state.reservations.push(action.payload); // Push into 'reservations', not 'cars'
       })
       .addCase(createReservation.rejected, (state) => {
