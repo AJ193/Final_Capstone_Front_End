@@ -1,18 +1,16 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useAuthUser, useAuthHeader } from 'react-auth-kit';
-// import axios from 'axios';
+import { useAuthHeader } from 'react-auth-kit';
+import axios from 'axios';
 import { fetchCars } from '../redux/cars/carsSlice';
 // import { createReservation } from '../redux/reservations/reservationSlice';
 
 function AddReservations() {
   const dispatch = useDispatch();
-  const auth = useAuthUser();
   const authHeader = useAuthHeader();
   const { cars } = useSelector((store) => store.cars);
   const token = authHeader();
-  const uid = auth().id;
 
   // State variables for form fields and validation errors
   const [formData, setFormData] = useState({
@@ -21,6 +19,7 @@ function AddReservations() {
     returnDate: '',
   });
   const [formErrors, setFormErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCars());
@@ -56,43 +55,40 @@ function AddReservations() {
     });
   };
 
-  const reservationData = {
-    car_id: formData.carBrand, // You may need to map this to the actual car ID
-    user_id: uid, // Replace with the actual user ID
-    start_date: formData.rentalDate,
-    end_date: formData.returnDate,
-  };
-
-  const baseUrl = 'http://localhost:5000/reservations';
-
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (validateForm()) {
+    if (validateForm() && !submitting) {
+      setSubmitting(true);
+
+      const payload = new FormData();
+      payload.append('car_id', formData.carBrand);
+      payload.append('start_date', formData.rentalDate);
+      payload.append('end_date', formData.returnDate);
+
       try {
-        const response = await fetch(baseUrl, reservationData, {
+        const response = await axios.post('http://localhost:5000/reservations', payload, {
           headers: {
             Authorization: token,
           },
         });
 
-        console.log(response);
-
         if (response.status === 201) {
           // Successfully created a reservation (status code 201)
-          // You can handle the response accordingly
           console.log('Reservation created successfully');
-          // You may also want to reset the form or navigate to a success page here
+          setFormData({
+            carBrand: '',
+            rentalDate: '',
+            returnDate: '',
+          });
         } else {
-          // Handle other success status codes or errors as needed
           console.error('Failed to create a reservation');
-          // You can throw a custom error here or set an error state to display an error message
         }
       } catch (error) {
-        // Handle Axios request errors
         console.error('Failed to create a reservation:', error);
-        // You can throw a custom error here or set an error state to display an error message
+      } finally {
+        setSubmitting(false);
       }
     }
   };
@@ -106,12 +102,10 @@ function AddReservations() {
             There are 34 different versions of the Vespa. Today five series are in
             production: the classic manual transmission PX and the modern CVT
             transmission S: LX. GT, and GTS: We have showrooms all over the globe
-            which some include test-riding facilities. if you wish to find out if
+            which some include test-riding facilities. If you wish to find out if
             a test-ride is available in your area, please use the selector below.
             London Book Now
           </p>
-          <h1>{uid}</h1>
-          <h1>{token}</h1>
           <form onSubmit={handleSubmit}>
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 text-gray-700">
               <div className="sm:col-span-3">
@@ -179,8 +173,9 @@ function AddReservations() {
                 <button
                   type="submit"
                   className="btn w-full bg-white text-newGreen shadow-sm hover:bg-lime-200"
+                  disabled={submitting}
                 >
-                  Submit
+                  {submitting ? 'Submitting...' : 'Submit'}
                 </button>
               </div>
             </div>

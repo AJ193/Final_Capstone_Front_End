@@ -23,21 +23,35 @@ export const fetchReservations = createAsyncThunk('reservations/fetchReservation
   return { reservations, disabledDates };
 });
 
-export const createReservation = createAsyncThunk(
-  'reservations/createReservation',
-  async (reservationData, token) => {
-    try {
-      const response = await axios.post(baseUrl, reservationData, {
-        headers: {
-          Authorization: token,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      throw new Error('Failed to create a reservation'); // You can customize this error message.
-    }
-  },
-);
+// export const createReservation = createAsyncThunk(
+//   'reservations/createReservation',
+//   async (reservationData, token) => {
+//     try {
+//       const response = await axios.post(baseUrl, reservationData, {
+//         headers: {
+//           Authorization: token,
+//         },
+//       });
+//       return response.data;
+//     } catch (error) {
+//       throw new Error('Failed to create a reservation'); // You can customize this error message.
+//     }
+//   },
+// );
+
+export const createReservation = createAsyncThunk('reservations/createReservation', async (reservationData, token) => {
+  try {
+    const response = await axios.post(baseUrl, reservationData, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+});
 
 const reservationSlice = createSlice({
   name: 'reservations',
