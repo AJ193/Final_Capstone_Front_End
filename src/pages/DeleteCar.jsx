@@ -10,15 +10,15 @@ const DeleteCar = ({ car }) => {
 
   const handleDelete = () => {
     if (window.confirm('Are you sure you want to delete this car?')) {
-      dispatch(deleteCar(car.id));
+      dispatch(deleteCar(car.model));
     }
   };
 
   return (
     <section className="text-gray-600 body-font pt-4">
       <div className="bg-gray-200 bg-opacity-50 p-2 rounded-lg shadow-lg flex flex-row sm:flex-col items-center justify-between text-center">
-        <img src={car.image_url} alt={car.name} className="sm:w-40 w-16 rounded-full mb-2" />
-        <p className="sm:text-xl text-sm font-semibold mb-2 mx-3">{car.name}</p>
+        <img src={car.picture} alt={car.model} className="sm:w-40 w-16 rounded-full mb-2" />
+        <p className="sm:text-xl text-sm font-semibold mb-2 mx-3">{car.model}</p>
         <div className="flex items-center sm:space-x-4">
           <button
             type="button"
@@ -55,13 +55,12 @@ const CarList = () => {
   );
 };
 
-export default CarList;
+DeleteCar.defaultProps = {
+  car: 'hello',
+};
 
 DeleteCar.propTypes = {
-  car: propTypes.shape({
-    id: propTypes.number,
-    name: propTypes.string,
-    details: propTypes.string,
-    image_url: propTypes.string,
-  }).isRequired,
+  car: propTypes.node,
 };
+
+export default CarList;
