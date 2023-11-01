@@ -1,12 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-// import { RequireAuth } from 'react-auth-kit';
+import { RequireAuth } from 'react-auth-kit';
 import Navbar from './layouts/Navbar';
 import Home from './pages/Home';
 import Cars from './pages/Cars';
 import About from './pages/About';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
+import Reservations from './components/AddReservations';
+import MyReservations from './components/Reservations';
+import AddCar from './pages/AddCar';
+import DeleteCar from './pages/DeleteCar';
+import CarDetails from './pages/CarDetails';
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -43,17 +48,13 @@ function App() {
             element={<Cars />}
           />
           <Route
+            path="/car_details/:id"
+            element={<CarDetails />}
+          />
+          <Route
             path="/about"
             element={<About />}
           />
-          {/* <Route
-            path="/about"
-            element={(
-              <RequireAuth loginPath="/login">
-                <About />
-              </RequireAuth>
-            )}
-          /> */}
           <Route
             path="/signup"
             element={<SignUp />}
@@ -61,6 +62,38 @@ function App() {
           <Route
             path="/login"
             element={<Login />}
+          />
+          <Route
+            path="/reservations"
+            element={(
+              <RequireAuth loginPath="/login">
+                <MyReservations />
+              </RequireAuth>
+            )}
+          />
+          <Route
+            path="/add_reservation"
+            element={(
+              <RequireAuth loginPath="/login">
+                <Reservations />
+              </RequireAuth>
+            )}
+          />
+          <Route
+            path="/add_car"
+            element={(
+              <RequireAuth loginPath="/login">
+                <AddCar />
+              </RequireAuth>
+            )}
+          />
+          <Route
+            path="/delete_car"
+            element={(
+              <RequireAuth loginPath="/login">
+                <DeleteCar />
+              </RequireAuth>
+            )}
           />
         </Routes>
       </div>

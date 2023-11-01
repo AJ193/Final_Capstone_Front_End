@@ -70,16 +70,46 @@ export default function Navbar({ dark, data }) {
             </Link>
           ))}
           {isAuthenticated() && (
-            <button
-              type="button"
-              onClick={logout}
-              className="text-l font-bold leading-6 py-2 pr-16 pl-5 text-black hover:bg-newGreen hover:text-white
+            <>
+              <Link
+                to="/add_car"
+                className="text-l font-bold leading-6 py-2 pr-16 pl-5 text-black hover:bg-newGreen hover:text-white
               dark:text-white "
-              data-te-ripple-init
-              data-te-ripple-color="light"
-            >
-              Logout
-            </button>
+              >
+                Add Car
+              </Link>
+              <Link
+                to="/delete_car"
+                className="text-l font-bold leading-6 py-2 pr-16 pl-5 text-black hover:bg-newGreen hover:text-white
+              dark:text-white "
+              >
+                Delete Car
+              </Link>
+              <Link
+                to="/reservations"
+                className="text-l font-bold leading-6 py-2 pr-16 pl-5 text-black hover:bg-newGreen hover:text-white
+              dark:text-white "
+              >
+                Reservations
+              </Link>
+              <Link
+                to="/add_reservations"
+                className="text-l font-bold leading-6 py-2 pr-16 pl-5 text-black hover:bg-newGreen hover:text-white
+              dark:text-white "
+              >
+                Add Reservations
+              </Link>
+              <button
+                type="button"
+                onClick={logout}
+                className="text-l font-bold leading-6 py-2 pr-16 pl-5 text-black hover:bg-newGreen hover:text-white
+                dark:text-white "
+                data-te-ripple-init
+                data-te-ripple-color="light"
+              >
+                Logout
+              </button>
+            </>
           )}
         </nav>
 
