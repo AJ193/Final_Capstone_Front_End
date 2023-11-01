@@ -1,6 +1,8 @@
+/* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useAuthHeader } from 'react-auth-kit';
 import axios from 'axios';
 import { fetchCars } from '../redux/cars/carsSlice';
@@ -8,6 +10,7 @@ import { fetchCars } from '../redux/cars/carsSlice';
 
 function AddReservations() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const authHeader = useAuthHeader();
   const { cars } = useSelector((store) => store.cars);
   const token = authHeader();
@@ -62,13 +65,14 @@ function AddReservations() {
     if (validateForm() && !submitting) {
       setSubmitting(true);
 
-      const payload = new FormData();
-      payload.append('car_id', formData.carBrand);
-      payload.append('start_date', formData.rentalDate);
-      payload.append('end_date', formData.returnDate);
+      const reservation = {
+        car_id: formData.carBrand,
+        start_date: formData.rentalDate,
+        end_date: formData.returnDate,
+      };
 
       try {
-        const response = await axios.post('http://localhost:5000/reservations', payload, {
+        const response = await axios.post('http://localhost:5000/reservations', reservation, {
           headers: {
             Authorization: token,
           },
@@ -82,6 +86,7 @@ function AddReservations() {
             rentalDate: '',
             returnDate: '',
           });
+          navigate('/reservations', { state: { message: 'Car added successfully.' } });
         } else {
           console.error('Failed to create a reservation');
         }
@@ -99,17 +104,18 @@ function AddReservations() {
         <div className="p-5 max-w-5xl">
           <h2 className="text-center text-3xl font-bold">RESERVE A CAR TEST-RIDE</h2>
           <p className="my-2 text- md:text-center">
-            There are 34 different versions of the Vespa. Today five series are in
-            production: the classic manual transmission PX and the modern CVT
-            transmission S: LX. GT, and GTS: We have showrooms all over the globe
-            which some include test-riding facilities. If you wish to find out if
-            a test-ride is available in your area, please use the selector below.
-            London Book Now
+            There are 34 different versions of the Vespa. Today five series are in production: the classic manual
+            transmission PX and the modern CVT transmission S: LX. GT, and GTS: We have showrooms all over the globe
+            which some include test-riding facilities. If you wish to find out if a test-ride is available in your area,
+            please use the selector below. London Book Now
           </p>
           <form onSubmit={handleSubmit}>
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 text-gray-700">
               <div className="sm:col-span-3">
-                <label htmlFor="carBrand" className="block text-sm font-medium leading-6">
+                <label
+                  htmlFor="carBrand"
+                  className="block text-sm font-medium leading-6"
+                >
                   Car brand
                 </label>
                 <div className="mt-2">
@@ -121,11 +127,17 @@ function AddReservations() {
                       formErrors.carBrand ? 'border-red-500 text-red-500' : ''
                     }`}
                   >
-                    <option value="" disabled>
+                    <option
+                      value=""
+                      disabled
+                    >
                       --Pick a Car brand --
                     </option>
                     {cars.map((car) => (
-                      <option key={car.id} value={car.id}>
+                      <option
+                        key={car.id}
+                        value={car.id}
+                      >
                         {car.model}
                       </option>
                     ))}
@@ -134,7 +146,10 @@ function AddReservations() {
                 </div>
               </div>
               <div className="sm:col-span-3">
-                <label htmlFor="rentalDate" className="block text-sm font-medium leading-6">
+                <label
+                  htmlFor="rentalDate"
+                  className="block text-sm font-medium leading-6"
+                >
                   Rental date
                 </label>
                 <div className="mt-2">
@@ -152,7 +167,10 @@ function AddReservations() {
                 </div>
               </div>
               <div className="sm:col-span-3">
-                <label htmlFor="returnDate" className="block text-sm font-medium leading-6">
+                <label
+                  htmlFor="returnDate"
+                  className="block text-sm font-medium leading-6"
+                >
                   Return date
                 </label>
                 <div className="mt-2">
