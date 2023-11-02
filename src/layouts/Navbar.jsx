@@ -115,13 +115,13 @@ export default function Navbar({ dark, data }) {
 
         {/* Social Links */}
         <div className="space-x-4 flex flex-wrap justify-center items-center md:p-4">
-          <a href="#gg" className="hidden text-black hover:text-newGreen text-xl md:block">
+          <a href="https://facebook.com" target="_blank" className="hidden text-black hover:text-newGreen text-xl md:block" rel="noreferrer">
             <BiLogoFacebook />
           </a>
-          <a href="#gg" className="hidden text-black hover:text-newGreen text-xl md:block">
+          <a href="https://twitter.com" target="_blank" className="hidden text-black hover:text-newGreen text-xl md:block" rel="noreferrer">
             <BiLogoTwitter />
           </a>
-          <a href="#gg" className="hidden text-black hover:text-newGreen text-xl md:block">
+          <a href="https://pinterest.com" target="_blank" className="hidden text-black hover:text-newGreen text-xl md:block" rel="noreferrer">
             <BiLogoPinterestAlt />
           </a>
           <label className="swap swap-rotate">
