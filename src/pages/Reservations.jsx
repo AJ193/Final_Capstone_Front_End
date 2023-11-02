@@ -73,7 +73,7 @@ function Reservations() {
         }
       })
       .catch((error) => {
-        setAlert('Error:', error);
+        setAlert('Errors:', error);
       });
   };
 
