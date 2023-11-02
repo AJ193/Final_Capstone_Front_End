@@ -2,19 +2,22 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthHeader } from 'react-auth-kit';
 import axios from 'axios';
 import { fetchCars } from '../redux/cars/carsSlice';
 import Alert from '../layouts/Alert';
-// import { createReservation } from '../redux/reservations/reservationSlice';
 
 function AddReservations() {
+  const location = useLocation();
+  const selectedCarId = location.state?.carId;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const authHeader = useAuthHeader();
   const { cars } = useSelector((store) => store.cars);
   const token = authHeader();
+
+  console.log(selectedCarId);
 
   // State variables for form fields and validation errors
   const [formData, setFormData] = useState({
@@ -101,7 +104,7 @@ function AddReservations() {
 
   return (
     <>
-      <section className="bg-newGreen relative inset-0 h-full text-white flex justify-center items-center">
+      <section className="relative inset-0 h-full flex justify-center items-center">
         <div className="p-5 max-w-5xl">
           <h2 className="text-center text-3xl font-bold">RESERVE A CAR TEST-RIDE</h2>
           <p className="my-2 text- md:text-center">
@@ -112,7 +115,7 @@ function AddReservations() {
           </p>
           {alert && <Alert msg={alert} />}
           <form onSubmit={handleSubmit}>
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 text-gray-700">
+            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 text-gray-500">
               <div className="sm:col-span-3">
                 <label
                   htmlFor="carBrand"
@@ -125,7 +128,7 @@ function AddReservations() {
                     name="carBrand"
                     value={formData.carBrand}
                     onChange={handleFieldChange}
-                    className={`select bg-transparent border border-gray-700 w-full ${
+                    className={`select bg-transparent border border-gray-500 w-full ${
                       formErrors.carBrand ? 'border-red-500 text-red-500' : ''
                     }`}
                   >
@@ -161,7 +164,7 @@ function AddReservations() {
                     value={formData.rentalDate}
                     onChange={handleFieldChange}
                     placeholder="Rental date"
-                    className={`input placeholder:text-gray-700 bg-transparent border border-gray-700 w-full ${
+                    className={`input placeholder:text-gray-500 bg-transparent border border-gray-500 w-full ${
                       formErrors.rentalDate ? 'border-red-500 text-red-500' : ''
                     }`}
                   />
@@ -182,7 +185,7 @@ function AddReservations() {
                     value={formData.returnDate}
                     onChange={handleFieldChange}
                     placeholder="Return date"
-                    className={`input placeholder:text-gray-700 bg-transparent border border-gray-700 w-full ${
+                    className={`input placeholder:text-gray-500 bg-transparent border border-gray-500 w-full ${
                       formErrors.returnDate ? 'border-red-500 text-red-500' : ''
                     }`}
                   />
@@ -192,7 +195,7 @@ function AddReservations() {
               <div className="sm:col-span-3 md:my-8">
                 <button
                   type="submit"
-                  className="btn w-full bg-white text-newGreen shadow-sm hover:bg-lime-200"
+                  className="btn w-full bg-newGreen text-white shadow-sm hover:bg-lime-800"
                   disabled={submitting}
                 >
                   {submitting ? 'Submitting...' : 'Submit'}
