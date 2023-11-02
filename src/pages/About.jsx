@@ -38,7 +38,7 @@ function About() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl grid grid-cols-1 gap-x-8 gap-y-10 lg:max-w-4xl lg:grid-cols-2 lg:gap-y-16">
           <div className="mx-auto max-w-2xl lg:text-left">
-            <h2 className="font-bold leading-7 text-3xl text-indigo-600 sm:text-4xl">About Us</h2>
+            <h2 className="font-bold leading-7 text-3xl text-newGreen sm:text-4xl">About Us</h2>
             <p className="mt-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-500 sm:text-2xl">
               Your Trusted Car Rental Partner
             </p>
@@ -50,7 +50,7 @@ function About() {
             </p>
           </div>
           <div className="mx-auto max-w-2xl lg:text-left">
-            <h2 className="font-bold leading-7 text-3xl text-indigo-600 sm:text-4xl">Our Mission</h2>
+            <h2 className="font-bold leading-7 text-3xl text-newGreen sm:text-4xl">Our Mission</h2>
             <p className="mt-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-500 sm:text-2xl">
               Your Trusted Car Rental Partner
             </p>
@@ -64,12 +64,12 @@ function About() {
           </div>
         </div>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-          <h2 className="font-bold leading-7 my-20 text-center text-3xl text-indigo-600 sm:text-4xl">Our Mission</h2>
+          <h2 className="font-bold leading-7 my-20 text-center text-3xl text-newGreen sm:text-4xl">Our Mission</h2>
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
             {features.map((feature) => (
               <div key={feature.name} className="relative pl-16">
                 <dt className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-300">
-                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-newGreen">
                     <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
                   </div>
                   {feature.name}

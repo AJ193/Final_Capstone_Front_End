@@ -19,7 +19,7 @@ function Login() {
       // Perform the navigation
       navigate('/about');
     }
-  }, []);
+  }, [isAuthenticated, navigate]);
 
   // Clear registration message
   useEffect(() => {
@@ -66,10 +66,10 @@ function Login() {
 
         const uid = response.data.status.data.user.id;
         const uname = response.data.status.data.user.name;
-        const tokenn = response.data.status.data.jwt;
+        const [, token] = response.headers.authorization.split(' ');
 
         if (signIn({
-          token: tokenn,
+          token,
           expiresIn: 3600,
           tokenType: 'Bearer',
           authState: { email: formData.email, name: uname, id: uid },
