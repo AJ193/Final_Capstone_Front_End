@@ -115,15 +115,15 @@ export default function Navbar({ dark, data }) {
 
         {/* Social Links */}
         <div className="space-x-4 flex flex-wrap justify-center items-center md:p-4">
-          <a href="#gg" className="hidden text-black hover:text-newGreen text-xl md:block">
+          <Link to="https://facebook.com" target="_blank" className="hidden text-black hover:text-newGreen text-xl md:block">
             <BiLogoFacebook />
-          </a>
-          <a href="#gg" className="hidden text-black hover:text-newGreen text-xl md:block">
+          </Link>
+          <Link to="https://facebook.com" target="_blank" className="hidden text-black hover:text-newGreen text-xl md:block">
             <BiLogoTwitter />
-          </a>
-          <a href="#gg" className="hidden text-black hover:text-newGreen text-xl md:block">
+          </Link>
+          <Link to="https://facebook.com" target="_blank" className="hidden text-black hover:text-newGreen text-xl md:block">
             <BiLogoPinterestAlt />
-          </a>
+          </Link>
           <label className="swap swap-rotate">
             <input
               type="checkbox"
