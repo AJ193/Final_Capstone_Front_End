@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  <h1><b>Car Rent Fullstack</b></h1>
+  <h1><b>Car Rental Fullstack App</b></h1>
 
 </div>
 
@@ -10,7 +10,7 @@
 
 ## 📗 Table of Contents
 
-- [📖 Car Rent Fullstack - Rails Backend ](#-car-rent-fullstack)
+- [📖 Car Rental Fullstack App ](#-car-rental-fullstack-app)
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
@@ -33,7 +33,7 @@
 
 # 📖 Car Rent Fullstack - Rails Backend <a name="about-project"></a>
 
-**Car Rent Fullstack - Rails Backend** is a backend project for fullstack app rent a car apps
+**Car Rental Fullstack App** is a backend project for fullstack app rent a car apps
 This is the link to the [frontend](https://github.com/AJ193/Final_Capstone_Front_End)
 ## 🛠 Built With <a name="built-with"></a>
 
