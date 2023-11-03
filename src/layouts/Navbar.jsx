@@ -36,7 +36,7 @@ export default function Navbar({ dark, data }) {
 
   const logout = () => {
     singOut();
-    navigate('/login', { state: { message: 'Logout successful.' } });
+    navigate('/login', { state: { message: 'Logout successfully.' } });
   };
 
   return (
