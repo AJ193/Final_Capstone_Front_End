@@ -1,70 +1,265 @@
-# Getting Started with Create React App
+<a name="readme-top"></a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
 
-## Available Scripts
+  <h1><b>Car Rent Fullstack</b></h1>
 
-In the project directory, you can run:
+</div>
 
-### `npm start`
+<!-- TABLE OF CONTENTS -->
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📗 Table of Contents
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [📖 Car Rent Fullstack - Rails Backend ](#-car-rent-fullstack)
+  - [🛠 Built With ](#-built-with-)
+    - [Tech Stack ](#tech-stack-)
+    - [Key Features ](#key-features-)
+  - [💻 Getting Started ](#-getting-started-)
+    - [Prerequisites](#prerequisites)
+    - [Setup](#setup)
+    - [Install](#install)
+    - [Usage](#usage)
+    - [Test](#test)
+  - [📊 ERD Diagram ](#-erd-diagram-)
+  - [📃 Api Documentation ](#-api-documentation-)
+  - [👥 Authors ](#-authors-)
+  - [🔭 Future Features ](#-future-features-)
+  - [🤝 Contributing ](#-contributing-)
+  - [⭐️ Show your support ](#️-show-your-support-)
+  - [🙏 Acknowledgments ](#-acknowledgments-)
+  - [📝 License ](#-license-)
 
-### `npm test`
+<!-- PROJECT DESCRIPTION -->
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 📖 Car Rent Fullstack - Rails Backend <a name="about-project"></a>
 
-### `npm run build`
+**Car Rent Fullstack - Rails Backend** is a backend project for fullstack app rent a car apps
+This is the link to the [frontend](https://github.com/AJ193/Final_Capstone_Front_End)
+## 🛠 Built With <a name="built-with"></a>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Tech Stack <a name="tech-stack"></a>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<details>
+  <summary>Server</summary>
+    <li><a href="https://www.ruby-lang.org/en/">Ruby</a></li>
+    <li><a href="https://rubyonrails.org/">Rails</a></li>
+</details>
+<details>
+  <summary>Database</summary>
+    <li><a href="https://www.postgresql.org/">Postgres</a></li>
+</details>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- Features -->
 
-### `npm run eject`
+### Key Features <a name="key-features"></a>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Built using Ruby on Rails**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<!-- LIVE DEMO
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🚀 Live Demo <a name="live-demo"></a>
 
-## Learn More
+- [Live Demo Link](https://stock-wise.vercel.app/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<!-- GETTING STARTED -->
 
-### Code Splitting
+## 💻 Getting Started <a name="getting-started"></a>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+To get a local copy up and running, follow these steps.
 
-### Analyzing the Bundle Size
+### Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+In order to run this project you need:
 
-### Making a Progressive Web App
+```
+    ruby >= 3.2.0
+    rails >= 7.0
+    postgres >- 15.3
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Setup
 
-### Advanced Configuration
+Clone this repository to your desired folder:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+  git clone https://github.com/AJ193/Final_Capstone_Back_End
+```
 
-### Deployment
+You need to setup database and change the ```config/database.yml```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```yml
+  default: &default
+    adapter: postgresql
+    encoding: unicode
+    pool: 5
+    username: <%= Rails.application.credentials.postgres[:username] %>
+    password: <%= Rails.application.credentials.postgres[:password] %>
+    host: localhost
 
-### `npm run build` fails to minify
+  development:
+    <<: *default
+    database: [your_database_for_development]
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  test:
+    <<: *default
+    database: [your_database_for_test]
+
+  production:
+    <<: *default
+    database: [your_database_for_production]
+```
+
+### Install
+
+Install this project with:
+
+```bash
+  cd Final_Capstone_Back_End
+  bundle install
+```
+
+it will install the required gemfile for running the project
+
+after that you need to create or change ```credentials.yml.enc```
+
+you can run these command
+
+```bash
+  rails credentails:edit
+```
+
+it will create the ```master.key``` and ```credentials.yml.enc```
+
+and to edit it you need to run
+
+```bash
+  EDITOR=nano rails credentails:edit
+```
+in this example I use ```nano``` you can use ```vim``` or vscode ```code``` but you need to add flag ```--wait``` for vscode
+
+and after that you need to add the following data for making it work
+```yml
+  postgres:
+    username: [ your username for postgres ]
+    password: [ your password for postgres ]
+  
+  secret_key_base: # its already generated by default
+  devise_jwt_secret_key: qx3125jmfqo2w5idjfmca # put a secret generated key
+```
+
+to generated the secret key for the ```devise_jwt``` you can use online tool or you can run this
+
+```bash
+  bundle exec rake secret
+```
+after that you run this command to setup the database and than the server ready to run
+```bash
+  rails db:setup
+```
+
+
+### Usage
+
+to use this project:
+
+```ruby
+   bin/rails server
+```
+
+it will run the the server on ```localhost:5000```
+
+### Test
+
+to run test in these this project:
+
+```ruby
+   rspec
+```
+
+it will run the all the unit test of these project
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📊 ERD Diagram <a name="erd-diagram"></a>
+
+  <img src="./public/drawSQL-car-rental-export-2023-11-03%20(1).png" alt="logo" width="auto"  height="auto" />
+  
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📃 Api Documentation <a name="api-documentaion"></a>
+
+For the documentation you can look at [here](https://app.swaggerhub.com/apis-docs/ICHSAN2668/car-rental/v1)
+or you can access it from ```localhost:5000/api-docs``` if you already run the project
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 👥 Authors <a name="authors"></a>
+
+👤 **Ghulam Shabbir**
+
+- GitHub: [@AJ](https://github.com/AJ193)
+- Twitter: [@AJ](https://twitter.com/GhulamShabbir59)
+- LinkedIn: [@AJ](https://www.linkedin.com/in/ghulam-shabbir-225264247/)
+
+👤 **Okolie Tochukwu**
+
+- GitHub: [@ticoniq](https://github.com/ticoniq)
+- LinkedIn: [ticoniq](https://linkedin.com/in/ticoniq)
+- Portfolio: [Portfolio](https://tochidev.com)
+
+👤 **Ichsan Sandy**
+
+- GitHub: [@ichsansandy](https://github.com/ichsansandy)
+- Twitter: [@1chsansandy](https://twitter.com/1chsansandy)
+- LinkedIn: [Ichsan Sandy](https://linkedin.com/in/ichsans)
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- FUTURE FEATURES -->
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- **Add UI System**
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+
+## 🤝 Contributing <a name="contributing"></a>
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](https://github.com/AJ193/Final_Capstone_Back_End/issues).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- SUPPORT -->
+
+## ⭐️ Show your support <a name="support"></a>
+
+If you like this project you can share this project to your friend
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGEMENTS -->
+
+## 🙏 Acknowledgments <a name="acknowledgements"></a>
+
+The frontend design is a replica was originally designed by [Murat Korkmaz on Behance](https://www.behance.net/muratk). Checkout Murat Korkmaz's design [here](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
+
+## 📝 License <a name="license"></a>
+
+This project is [MIT](./LICENSE) licensed.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
