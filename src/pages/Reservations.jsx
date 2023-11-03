@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useEffect, useState } from 'react';
 import { useAuthHeader } from 'react-auth-kit';
@@ -85,18 +86,17 @@ function Reservations() {
   return (
     <>
       {reservationData ? (
-        <section className="relative inset-0 h-full flex justify-center items-center">
-          <div className="p-5 max-w-5xl">
+        <section className="h-full flex justify-center items-center">
+          <div className="p-5 mx-auto my-10">
             <h2 className="text-center text-3xl font-bold">Reservations</h2>
             {alert && <Alert msg={alert} />}
-            <div className="overflow-x-auto">
-              <table className="table my-10 md:my-20">
+            <div className="">
+              <table className="table my-5 overflow-x-auto">
                 {/* head */}
                 <thead>
                   <tr>
-                    <th className="text-2xl">
-                      Car Model
-                    </th>
+                    <th className="text-2xl">Car Model</th>
+                    <th className="text-2xl">City</th>
                     <th className="text-2xl">Image</th>
                     <th className="text-2xl">Start Date</th>
                     <th className="text-2xl">End date</th>
@@ -106,9 +106,8 @@ function Reservations() {
                 <tbody>
                   {reservationData.data.map((reservation) => (
                     <tr key={reservation.id}>
-                      <th>
-                        {cars.find((car) => car.id === reservation.car_id)?.model}
-                      </th>
+                      <th>{cars.find((car) => car.id === reservation.car_id)?.model}</th>
+                      <th>{reservation.city}</th>
                       <td>
                         <div className="flex items-center space-x-3">
                           <div className="avatar">
@@ -131,13 +130,24 @@ function Reservations() {
                         >
                           Details
                         </Link>
-                        <button
-                          type="button"
-                          className="btn btn-ghost btn-xs"
-                          onClick={() => handleDelete(reservation.id)}
-                        >
-                          Delete
-                        </button>
+                        <label htmlFor={reservation.car_id} className="btn btn-ghost btn-xs">Delete</label>
+                        <input type="checkbox" id={reservation.car_id} className="modal-toggle" />
+                        <div className="modal">
+                          <div className="modal-box">
+                            <p className="py-4">Are you sure you want to delete </p>
+                            <p>{reservation.city}</p>
+                            <div className="modal-action">
+                              <button
+                                type="button"
+                                className="btn bg-red-500 text-white"
+                                onClick={() => handleDelete(reservation.id)}
+                              >
+                                Delete
+                              </button>
+                              <label htmlFor={reservation.car_id} className="btn">Close!</label>
+                            </div>
+                          </div>
+                        </div>
                       </th>
                     </tr>
                   ))}

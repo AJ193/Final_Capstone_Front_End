@@ -21,6 +21,12 @@ const navigation = [
   { name: 'About', href: '/about' },
   { name: 'Cars', href: '/cars' },
 ];
+const privateNavigation = [
+  { name: 'Add Car', href: '/add_car' },
+  { name: 'Delete Car', href: '/delete_car' },
+  { name: 'Reservations', href: '/reservations' },
+  { name: 'Add Reservation', href: '/add_reservation' },
+];
 
 export default function Navbar({ dark, data }) {
   const isAuthenticated = useIsAuthenticated();
@@ -36,7 +42,7 @@ export default function Navbar({ dark, data }) {
   return (
     <>
       {/* Sidebar */}
-      <div className="fixed z-30 p-4 w-full h-14 bg-gray-50 flex items-center justify-between dark:bg-neutral md:flex-col md:w-2/12 md:h-screen md:p-0">
+      <div className="fixed z-50 p-4 w-full h-14 flex items-center justify-between dark:bg-neutral md:flex-col md:w-2/12 md:h-screen md:p-0 md:overflow-y-auto bg-gray-100">
         {/* Mobile menu */}
         <div className="flex md:hidden">
           <button
@@ -57,13 +63,12 @@ export default function Navbar({ dark, data }) {
         </a>
 
         {/* Navigation Links */}
-        {/* <nav className="flex flex-col space-y-2"> */}
         <nav className="hidden md:flex md:flex-col md:self-end md:space-y-2 md:p-0 md:m-0">
           {navigation.map((item) => (
             <Link
               key={item.name}
               to={item.href}
-              className="text-l font-bold leading-6 py-2 pr-16 pl-5 text-black hover:bg-newGreen hover:text-white
+              className="text-l font-bold leading-6 py-2 pr-8 pl-5 text-black hover:bg-newGreen hover:text-white
             dark:text-white "
             >
               {item.name}
@@ -71,38 +76,19 @@ export default function Navbar({ dark, data }) {
           ))}
           {isAuthenticated() && (
             <>
-              <Link
-                to="/add_car"
-                className="text-l font-bold leading-6 py-2 pr-16 pl-5 text-black hover:bg-newGreen hover:text-white
-              dark:text-white "
-              >
-                Add Car
-              </Link>
-              <Link
-                to="/delete_car"
-                className="text-l font-bold leading-6 py-2 pr-16 pl-5 text-black hover:bg-newGreen hover:text-white
-              dark:text-white "
-              >
-                Delete Car
-              </Link>
-              <Link
-                to="/reservations"
-                className="text-l font-bold leading-6 py-2 pr-16 pl-5 text-black hover:bg-newGreen hover:text-white
-              dark:text-white "
-              >
-                Reservations
-              </Link>
-              <Link
-                to="/add_reservation"
-                className="text-l font-bold leading-6 py-2 pr-16 pl-5 text-black hover:bg-newGreen hover:text-white
-              dark:text-white "
-              >
-                Add Reservations
-              </Link>
+              {privateNavigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="text-l font-bold leading-6 py-2 pr-8 pl-5 text-black hover:bg-newGreen hover:text-white dark:text-white "
+                >
+                  {item.name}
+                </Link>
+              ))}
               <button
                 type="button"
                 onClick={logout}
-                className="text-l font-bold leading-6 py-2 pr-16 pl-5 text-black hover:bg-newGreen hover:text-white
+                className="text-l font-bold leading-6 py-2 text-left pr-8 pl-5 text-black hover:bg-newGreen hover:text-white
                 dark:text-white "
                 data-te-ripple-init
                 data-te-ripple-color="light"
@@ -115,13 +101,13 @@ export default function Navbar({ dark, data }) {
 
         {/* Social Links */}
         <div className="space-x-4 flex flex-wrap justify-center items-center md:p-4">
-          <Link to="https://facebook.com" target="_blank" className="hidden text-black hover:text-newGreen text-xl md:block">
+          <Link to="https://facebook.com" target="_blank" className="hidden hover:text-newGreen text-xl md:block">
             <BiLogoFacebook />
           </Link>
-          <Link to="https://facebook.com" target="_blank" className="hidden text-black hover:text-newGreen text-xl md:block">
+          <Link to="https://facebook.com" target="_blank" className="hidden hover:text-newGreen text-xl md:block">
             <BiLogoTwitter />
           </Link>
-          <Link to="https://facebook.com" target="_blank" className="hidden text-black hover:text-newGreen text-xl md:block">
+          <Link to="https://facebook.com" target="_blank" className="hidden hover:text-newGreen text-xl md:block">
             <BiLogoPinterestAlt />
           </Link>
           <label className="swap swap-rotate">
@@ -143,7 +129,7 @@ export default function Navbar({ dark, data }) {
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
       >
-        <div className="fixed inset-0 z-50 bg-gray-300 bg-opacity-90  bg-red text-gray-700 dark:bg-base-100 dark:bg-opacity-90 dark:text-white" />
+        <div className="fixed inset-0 z-50 -z-0 bg-gray-300 bg-opacity-90  bg-red text-gray-700 dark:bg-base-100 dark:bg-opacity-90 dark:text-white" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full h-5/6 overflow-auto bg-white text-gray-700 px-6 py-6 sm:max-w-full dark:bg-base-100 dark:text-white">
           <div className="flex items-center justify-between text-gray-700 dark:text-white">
             <a
@@ -175,6 +161,29 @@ export default function Navbar({ dark, data }) {
                     {item.name}
                   </a>
                 ))}
+                {isAuthenticated() && (
+                <>
+                  {privateNavigation.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className="text-l font-bold leading-6 py-2 pr-8 pl-5 text-black hover:bg-newGreen hover:text-white dark:text-white "
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={logout}
+                    className="text-l font-bold leading-6 py-2 text-left pr-8 pl-5 text-black hover:bg-newGreen hover:text-white
+                dark:text-white "
+                    data-te-ripple-init
+                    data-te-ripple-color="light"
+                  >
+                    Logout
+                  </button>
+                </>
+                )}
               </div>
             </div>
           </div>

@@ -1,27 +1,26 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useAuthHeader } from 'react-auth-kit';
 import axios from 'axios';
-import { fetchCars } from '../redux/cars/carsSlice';
 import Alert from '../layouts/Alert';
 
 function AddReservations() {
-  const location = useLocation();
-  const selectedCarId = location.state?.carId;
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
   const authHeader = useAuthHeader();
   const { cars } = useSelector((store) => store.cars);
   const token = authHeader();
-
-  console.log(selectedCarId);
+  const params = new URLSearchParams(window.location.search);
+  const paramId = params.get('paramId'); // 'value1'
+  const paramModel = params.get('paramModel'); // 'value2'
 
   // State variables for form fields and validation errors
   const [formData, setFormData] = useState({
     carBrand: '',
+    city: '',
     rentalDate: '',
     returnDate: '',
   });
@@ -30,8 +29,14 @@ function AddReservations() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchCars());
-  }, [dispatch]);
+    // Set the formData once when the component mounts
+    if (paramId && paramModel) {
+      setFormData({
+        ...formData,
+        carBrand: paramModel,
+      });
+    }
+  }, [paramId, paramModel]);
 
   // Validation functions
   const validateForm = () => {
@@ -39,6 +44,10 @@ function AddReservations() {
 
     if (!formData.carBrand) {
       errors.carBrand = 'Car brand is required';
+    }
+
+    if (!formData.city) {
+      errors.city = 'City is required';
     }
 
     if (!formData.rentalDate) {
@@ -72,6 +81,7 @@ function AddReservations() {
 
       const reservation = {
         car_id: formData.carBrand,
+        city: formData.city,
         start_date: formData.rentalDate,
         end_date: formData.returnDate,
       };
@@ -83,9 +93,12 @@ function AddReservations() {
           },
         });
 
+        console.log(formData);
+
         if (response.status === 201) {
           setFormData({
             carBrand: '',
+            city: '',
             rentalDate: '',
             returnDate: '',
           });
@@ -104,8 +117,8 @@ function AddReservations() {
 
   return (
     <>
-      <section className="relative inset-0 h-full flex justify-center items-center">
-        <div className="p-5 max-w-5xl">
+      <section className="h-full">
+        <div className="p-5 max-w-5xl mx-auto">
           <h2 className="text-center text-3xl font-bold">RESERVE A CAR TEST-RIDE</h2>
           <p className="my-2 text- md:text-center">
             There are 34 different versions of the Vespa. Today five series are in production: the classic manual
@@ -124,30 +137,68 @@ function AddReservations() {
                   Car brand
                 </label>
                 <div className="mt-2">
-                  <select
-                    name="carBrand"
-                    value={formData.carBrand}
-                    onChange={handleFieldChange}
-                    className={`select bg-transparent border border-gray-500 w-full ${
-                      formErrors.carBrand ? 'border-red-500 text-red-500' : ''
-                    }`}
-                  >
-                    <option
-                      value=""
-                      disabled
+                  {paramId && paramModel ? (
+                    <select
+                      name="carBrand"
+                      value={formData.carBrand}
+                      onChange={handleFieldChange}
+                      className={`select bg-transparent border border-gray-500 w-full ${
+                        formErrors.carBrand ? 'border-red-500 text-red-500' : ''
+                      }`}
                     >
-                      --Pick a Car brand --
-                    </option>
-                    {cars.map((car) => (
                       <option
-                        key={car.id}
-                        value={car.id}
+                        value={paramId}
                       >
-                        {car.model}
+                        {paramModel}
                       </option>
-                    ))}
-                  </select>
+                    </select>
+                  ) : (
+                    <select
+                      name="carBrand"
+                      value={formData.carBrand}
+                      onChange={handleFieldChange}
+                      className={`select bg-transparent border border-gray-500 w-full ${
+                        formErrors.carBrand ? 'border-red-500 text-red-500' : ''
+                      }`}
+                    >
+                      <option
+                        value=""
+                        disabled
+                      >
+                        --Pick a Car brand --
+                      </option>
+                      {cars.map((car) => (
+                        <option
+                          key={car.id}
+                          value={car.id}
+                        >
+                          {car.model}
+                        </option>
+                      ))}
+                    </select>
+                  )}
                   {formErrors.carBrand && <p className="text-red-500">{formErrors.carBrand}</p>}
+                </div>
+              </div>
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="rentalDate"
+                  className="block text-sm font-medium leading-6"
+                >
+                  City
+                </label>
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleFieldChange}
+                    placeholder="City"
+                    className={`input placeholder:text-gray-500 bg-transparent border border-gray-500 w-full ${
+                      formErrors.city ? 'border-red-500 text-red-500' : ''
+                    }`}
+                  />
+                  {formErrors.city && <p className="text-red-500">{formErrors.city}</p>}
                 </div>
               </div>
               <div className="sm:col-span-3">
