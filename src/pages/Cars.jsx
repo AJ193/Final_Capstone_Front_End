@@ -70,7 +70,7 @@ function Cars() {
                 to={`/car_details/${car.id}`}
               >
                 <figure className="relative bg-gray-200 rounded-full w-48 h-48 mx-auto md:h-72 md:w-72">
-                  <img src={car.picture} alt={car.model} className="h-full object-fil object-contain rounded-full" />
+                  <img src={car.picture} alt={car.model} className="h-full object-fil object-contain rounded-full w-full" />
                 </figure>
                 <div className="w-48 mx-auto md:w-72 space-y-5">
                   <h2 className="text-center">{ car.model }</h2>

@@ -38,13 +38,11 @@ function App() {
 
   return (
     <div className={`${darkMode ? 'dark' : ''} grid grid-cols-12 h-screen`}>
-      {/* First Column (2/12) */}
-      <div className="h-14 col-span-12 md:col-span-2 md:h-full bg-gray-200">
+      <div className="h-14 col-span-12 md:col-span-2 md:h-full bg-gray-200 ">
         <Navbar dark={handleDarkMode} data={darkMode} />
       </div>
 
-      {/* Second Column (10/12) */}
-      <div className="col-span-12 md:col-span-10 h-screen">
+      <div className="col-span-12 md:col-span-10">
         <Routes>
           <Route
             path="/"

@@ -89,9 +89,9 @@ function Login() {
   }, 3000);
 
   return (
-    <section className="mx-auto h-full px-5">
-      <div className="my-10 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12 mx-auto md:my-20">
-        {alert && <Alert msg={alert} />}
+    <section className="h-full flex flex-col justify-center items-center px-5">
+      {alert && <Alert msg={alert} />}
+      <div className="md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
         <form onSubmit={handleSubmit}>
           <div className="relative mb-6 space-y-3">
             <label htmlFor="email" className="">

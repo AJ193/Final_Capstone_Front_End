@@ -76,8 +76,8 @@ function Register() {
   };
 
   return (
-    <section className="mx-auto h-full px-5">
-      <div className="my-10 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12 mx-auto md:my-20">
+    <section className="h-full flex justify-center items-center px-5">
+      <div className="md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
         {alert && <Alert msg={alert} />}
         <form onSubmit={handleSubmit}>
           <div className="relative mb-6 space-y-3">
