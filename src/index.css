@@ -2,20 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (max-width: 768px) {
-  .home_banner {
-    background-position: 50%;
-    background-image: url('assets/images/car_banner1.jpg');
-    height: 100vh;
-    width: auto;
-  }
-}
-
-@media (min-width: 768px) {
-  .home_banner {
-    background-position: 50%;
-    background-image: url('assets/images/car_banner1.jpg');
-    height: 100vh;
-    width: 186vh;
-  }
+.home_banner {
+  background-position: 50%;
+  background-image: url('assets/images/car_banner1.jpg');
+  height: 100vh;
+  background-repeat: no-repeat;
 }

@@ -8,7 +8,7 @@ function Home() {
 
   return (
     <>
-      <div className="h-full w-fit flex justify-center items-center home_banner absolute top-14 md:top-0">
+      <div className="home_banner h-full w-full flex justify-center items-center">
         <div className="text-center space-y-10 text-white bg-black opacity-50 w-full h-full flex flex-col justify-center items-center">
           <h1 className="mt-2 text-3xl font-bold md:text-4xl xl:text-6xl space-y-5">
             <p>

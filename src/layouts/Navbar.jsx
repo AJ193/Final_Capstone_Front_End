@@ -129,16 +129,16 @@ export default function Navbar({ dark, data }) {
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
       >
-        <div className="fixed inset-0 z-50 -z-0 bg-gray-300 bg-opacity-90  bg-red text-gray-700 dark:bg-base-100 dark:bg-opacity-90 dark:text-white" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full h-5/6 overflow-auto bg-white text-gray-700 px-6 py-6 sm:max-w-full dark:bg-base-100 dark:text-white">
+        <div className="fixed inset-0 z-50 bg-gray-300 bg-opacity-90  bg-red text-gray-700 dark:bg-base-100 dark:bg-opacity-90 dark:text-white" />
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full h-full overflow-auto bg-white text-gray-700 px-6 py-6 sm:max-w-full dark:bg-base-100 dark:text-white">
           <div className="flex items-center justify-between text-gray-700 dark:text-white">
-            <a
-              href="#hero"
+            <Link
+              to="/"
               className="font-bold text-xl text-gray-700 dark:text-white"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Menu
-            </a>
+              Car Rental
+            </Link>
             <button
               type="button"
               className="rounded-md p-2.5 text-gray-700 dark:text-white"
@@ -152,14 +152,14 @@ export default function Navbar({ dark, data }) {
             <div className="divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.href}
+                    to={item.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-newDark hover:text-newDarkYello dark:text-white"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
                 {isAuthenticated() && (
                 <>
@@ -167,16 +167,19 @@ export default function Navbar({ dark, data }) {
                     <Link
                       key={item.name}
                       to={item.href}
-                      className="text-l font-bold leading-6 py-2 pr-8 pl-5 text-black hover:bg-newGreen hover:text-white dark:text-white "
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-newGreen hover:text-white dark:text-white"
                     >
                       {item.name}
                     </Link>
                   ))}
                   <button
                     type="button"
-                    onClick={logout}
-                    className="text-l font-bold leading-6 py-2 text-left pr-8 pl-5 text-black hover:bg-newGreen hover:text-white
-                dark:text-white "
+                    onClick={() => {
+                      logout();
+                      setMobileMenuOpen(false);
+                    }}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-newGreen hover:text-white dark:text-white"
                     data-te-ripple-init
                     data-te-ripple-color="light"
                   >
