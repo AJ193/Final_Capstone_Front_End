@@ -137,7 +137,7 @@ export default function Navbar({ dark, data }) {
               className="font-bold text-xl text-gray-700 dark:text-white"
               onClick={() => setMobileMenuOpen(false)}
             >
-              TochiDev
+              Menu
             </a>
             <button
               type="button"
