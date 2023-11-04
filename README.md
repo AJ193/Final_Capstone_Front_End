@@ -31,10 +31,10 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Car Rent Fullstack - Rails Backend <a name="about-project"></a>
+# 📖 Car Rental Fullstack App <a name="about-project"></a>
 
 **Car Rental Fullstack App** is a backend project for fullstack app rent a car apps
-This is the link to the [frontend](https://github.com/AJ193/Final_Capstone_Front_End)
+This is the link to the [Backend](https://github.com/AJ193/Final_Capstone_Back_End)
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
