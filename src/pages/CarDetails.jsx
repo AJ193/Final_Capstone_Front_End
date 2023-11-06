@@ -56,6 +56,10 @@ function CarDetails() {
               {selectedCar.city}
             </p>
             <p className="text-xl font-semibold">
+              <span>Price-Per-Day: $</span>
+              {selectedCar.price_per_day}
+            </p>
+            <p className="text-xl font-semibold">
               <span>Year: </span>
               {selectedCar.year}
             </p>
