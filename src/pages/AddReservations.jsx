@@ -33,7 +33,7 @@ function AddReservations() {
     if (paramId && paramModel) {
       setFormData({
         ...formData,
-        carBrand: paramModel,
+        carBrand: paramId,
       });
     }
   }, [paramId, paramModel]);
@@ -92,8 +92,6 @@ function AddReservations() {
             Authorization: token,
           },
         });
-
-        console.log(formData);
 
         if (response.status === 201) {
           setFormData({
