@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.home_banner {
+  background-position: 50%;
+  background-image: url('assets/images/car_banner1.jpg');
+  height: 100vh;
+  background-repeat: no-repeat;
+}
