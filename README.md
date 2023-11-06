@@ -1,69 +1,59 @@
-<a name="readme-top"></a>
+<div align="center"><h1>Car Rental FullStack App</h1></div>
 
 <div align="center">
-
-  <h1><b>Car Rental Fullstack App</b></h1>
-
+  <!-- You are encouraged to replace this logo with your own! Otherwise you can also remove it. -->
+  <br/>
 </div>
 
 <!-- TABLE OF CONTENTS -->
 
-## 📗 Table of Contents
+# 📗 Table of Contents
 
-- [📖 Car Rental Fullstack App ](#-car-rental-fullstack-app)
-  - [🛠 Built With ](#-built-with-)
-    - [Tech Stack ](#tech-stack-)
-    - [Key Features ](#key-features-)
-  - [💻 Getting Started ](#-getting-started-)
-    - [Prerequisites](#prerequisites)
-    - [Setup](#setup)
-    - [Install](#install)
-    - [Usage](#usage)
-    - [Test](#test)
-  - [📊 ERD Diagram ](#-erd-diagram-)
-  - [📃 Api Documentation ](#-api-documentation-)
-  - [👥 Authors ](#-authors-)
-  - [🔭 Future Features ](#-future-features-)
-  - [🤝 Contributing ](#-contributing-)
-  - [⭐️ Show your support ](#️-show-your-support-)
-  - [🙏 Acknowledgments ](#-acknowledgments-)
-  - [📝 License ](#-license-)
+  - [🛠 Built With](#built-with)
+    - [Tech Stack](#tech-stack)
+    - [Key Features](#key-features)
+- [💻 Getting Started](#getting-started)
+  - [Setup](#setup)
+  - [Prerequisites](#prerequisites)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [🔭 Future Features](#future-features)
+- [👥 Authors](#authors)
+- [🤝 Contributing](#contributing)
+- [⭐️ Show your support](#support)
+- [📝 License](#license)
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Car Rental Fullstack App <a name="about-project"></a>
+# 📖 Final Capstone
 
-**Car Rental Fullstack App** is a backend project for fullstack app rent a car apps
-This is the link to the [Backend](https://github.com/AJ193/Final_Capstone_Back_End)
+> This is a capstone project that uses React and Redux technologies.
+This link is for back-end[https://github.com/AJ193/Final_Capstone_Back_End/tree/dev] 
+
 ## 🛠 Built With <a name="built-with"></a>
-
+- HTML
+- CSS
+- JS
 ### Tech Stack <a name="tech-stack"></a>
 
+> I Used Gitflow, modules, and advanced React, Redux & JS (ES6) in this Capstone Project.
+
 <details>
-  <summary>Server</summary>
-    <li><a href="https://www.ruby-lang.org/en/">Ruby</a></li>
-    <li><a href="https://rubyonrails.org/">Rails</a></li>
-</details>
-<details>
-  <summary>Database</summary>
-    <li><a href="https://www.postgresql.org/">Postgres</a></li>
+  <summary>HTML</summary>
+  <ul>
+    <li><a href="https://www.w3schools.com/html/">HTML</a></li>
+     <li><a href="https://www.w3schools.com/css/">CSS</a></li>
+     <li><a href="https://www.w3schools.com/css/">Javascript</a></li>
+  </ul>
 </details>
 
 <!-- Features -->
 
 ### Key Features <a name="key-features"></a>
 
-- **Built using Ruby on Rails**
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LIVE DEMO
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-- [Live Demo Link](https://stock-wise.vercel.app/)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
+- **[Create Reservations]**
+- **[Responsive Website]**
+_ **[Backend Api linked]**
 
 <!-- GETTING STARTED -->
 
@@ -73,130 +63,60 @@ To get a local copy up and running, follow these steps.
 
 ### Prerequisites
 
-In order to run this project you need:
-
-```
-    ruby >= 3.2.0
-    rails >= 7.0
-    postgres >- 15.3
-```
+In order to run this project you need the following tools:
+- Node.js in your computer
+- IDE(e.g.: Vscode,...)
+- Terminal
 
 ### Setup
 
 Clone this repository to your desired folder:
 
-```bash
-  git clone https://github.com/AJ193/Final_Capstone_Back_End
-```
-
-You need to setup database and change the ```config/database.yml```
-
-```yml
-  default: &default
-    adapter: postgresql
-    encoding: unicode
-    pool: 5
-    username: <%= Rails.application.credentials.postgres[:username] %>
-    password: <%= Rails.application.credentials.postgres[:password] %>
-    host: localhost
-
-  development:
-    <<: *default
-    database: [your_database_for_development]
-
-  test:
-    <<: *default
-    database: [your_database_for_test]
-
-  production:
-    <<: *default
-    database: [your_database_for_production]
+```sh
+  cd your-prefered-folder
+  
+  git clone git@github.com:AJ193/Final_Capstone_Front_End.git
 ```
 
 ### Install
 
-Install this project with:
+- Install this project with:
 
-```bash
-  cd Final_Capstone_Back_End
-  bundle install
+```sh
+  cd \Final_Capstone_Front_End
+
+  npm install or npm i
 ```
-
-it will install the required gemfile for running the project
-
-after that you need to create or change ```credentials.yml.enc```
-
-you can run these command
-
-```bash
-  rails credentails:edit
-```
-
-it will create the ```master.key``` and ```credentials.yml.enc```
-
-and to edit it you need to run
-
-```bash
-  EDITOR=nano rails credentails:edit
-```
-in this example I use ```nano``` you can use ```vim``` or vscode ```code``` but you need to add flag ```--wait``` for vscode
-
-and after that you need to add the following data for making it work
-```yml
-  postgres:
-    username: [ your username for postgres ]
-    password: [ your password for postgres ]
-  
-  secret_key_base: # its already generated by default
-  devise_jwt_secret_key: qx3125jmfqo2w5idjfmca # put a secret generated key
-```
-
-to generated the secret key for the ```devise_jwt``` you can use online tool or you can run this
-
-```bash
-  bundle exec rake secret
-```
-after that you run this command to setup the database and than the server ready to run
-```bash
-  rails db:setup
-```
-
 
 ### Usage
 
-to use this project:
+To run the project, execute the following command:
 
-```ruby
-   bin/rails server
+```sh
+  npm start
+
 ```
 
-it will run the the server on ```localhost:5000```
 
-### Test
 
-to run test in these this project:
+### Usage
+_Run the project on Visual Studio Code Live Server._
+<!--
+Example command:
 
-```ruby
-   rspec
+```sh
+  rails server
+### Deployment
+
+You can deploy this project using:
+Not Yet
+<!--
+Example:
+
+```sh
+
 ```
-
-it will run the all the unit test of these project
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## 📊 ERD Diagram <a name="erd-diagram"></a>
-
-  <img src="./public/drawSQL-car-rental-export-2023-11-03%20(1).png" alt="logo" width="auto"  height="auto" />
-  
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## 📃 Api Documentation <a name="api-documentaion"></a>
-
-For the documentation you can look at [here](https://app.swaggerhub.com/apis-docs/ICHSAN2668/car-rental/v1)
-or you can access it from ```localhost:5000/api-docs``` if you already run the project
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+ -->
 
 ## 👥 Authors <a name="authors"></a>
 
@@ -218,33 +138,20 @@ or you can access it from ```localhost:5000/api-docs``` if you already run the p
 - Twitter: [@1chsansandy](https://twitter.com/1chsansandy)
 - LinkedIn: [Ichsan Sandy](https://linkedin.com/in/ichsans)
 
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- FUTURE FEATURES -->
-
 ## 🔭 Future Features <a name="future-features"></a>
 
-- **Add UI System**
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+- [x] **[I will Deploy this page after completing all things]**
 <!-- CONTRIBUTING -->
 
 ## 🤝 Contributing <a name="contributing"></a>
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/AJ193/Final_Capstone_Back_End/issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- SUPPORT -->
+Feel free to check the [issues page](https://github.com/AJ193/Final_Capstone_Front_End/issues).
 
 ## ⭐️ Show your support <a name="support"></a>
 
-If you like this project you can share this project to your friend
+> If you like this project feel comfortable endorsing the authors. Give a star in GitHub repository.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -263,3 +170,4 @@ The frontend design is a replica was originally designed by [Murat Korkmaz on Be
 This project is [MIT](./LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
