@@ -8,7 +8,7 @@ const initialState = {
   reservedDatesByCarId: {},
 };
 
-const baseUrl = 'http://localhost:5000/reservations';
+const baseUrl = 'https://car-rental-iwkn.onrender.com/reservations';
 
 export const fetchReservations = createAsyncThunk('reservations/fetchReservations', async (token) => {
   const response = await axios.get(baseUrl, {
@@ -27,7 +27,7 @@ export const createReservation = createAsyncThunk(
   async (reservation, { getState }) => {
     try {
       const { token } = getState().auth; // Assuming you have an 'auth' slice for authentication
-      const response = await axios.post('http://localhost:5000/reservations', reservation, {
+      const response = await axios.post('https://car-rental-iwkn.onrender.com/reservations', reservation, {
         headers: {
           Authorization: token,
         },

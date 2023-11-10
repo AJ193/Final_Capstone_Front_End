@@ -28,7 +28,7 @@ function Reservations() {
   const [reservationData, setReservationData] = useState(null);
 
   useEffect(() => {
-    const apiUrl = 'http://localhost:5000/reservations';
+    const apiUrl = 'https://car-rental-iwkn.onrender.com/reservations';
     const headers = {
       Authorization: token,
     };
@@ -52,7 +52,7 @@ function Reservations() {
   }, [token]);
 
   const handleDelete = (reservationId) => {
-    const apiUrl = `http://localhost:5000/reservations/${reservationId}`;
+    const apiUrl = `https://car-rental-iwkn.onrender.com/reservations/${reservationId}`;
 
     fetch(apiUrl, {
       method: 'DELETE',
