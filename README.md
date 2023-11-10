@@ -17,6 +17,7 @@
   - [Prerequisites](#prerequisites)
   - [Install](#install)
   - [Usage](#usage)
+  - [Kanban board](#Kanban-board)
   - [🔭 Future Features](#future-features)
 - [👥 Authors](#authors)
 - [🤝 Contributing](#contributing)
@@ -117,6 +118,13 @@ Example:
 
 ```
  -->
+
+ ### Kanban board <a name="Kanban-board"></a>
+Kanban board Link [https://github.com/AJ193/Final_Capstone_Back_End/projects/1] 
+
+Initial state Kanban board Link [https://user-images.githubusercontent.com/119049613/277675047-0efce66f-56d3-43e8-b724-bdf404184352.PNG] 
+
+ <p align="right">(<a href="Kanban-board">back to top</a>)</p>
 
 ## 👥 Authors <a name="authors"></a>
 
