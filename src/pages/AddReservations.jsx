@@ -87,7 +87,7 @@ function AddReservations() {
       };
 
       try {
-        const response = await axios.post('http://localhost:5000/reservations', reservation, {
+        const response = await axios.post('https://car-rental-iwkn.onrender.com/reservations', reservation, {
           headers: {
             Authorization: token,
           },

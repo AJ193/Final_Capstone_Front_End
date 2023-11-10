@@ -39,7 +39,7 @@ function Register() {
       }, 3000);
     } else {
       try {
-        const response = await axios.post('http://localhost:5000/signup', {
+        const response = await axios.post('https://car-rental-iwkn.onrender.com/signup', {
           user: {
             email: formData.email,
             password: formData.password,
