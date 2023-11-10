@@ -40,34 +40,35 @@ function CarDetails() {
 
   return (
     <>
-      {selectedCar && (
-        <div className="flex flex-col-reverse gap-8 w-full md:flex-row justify-center h-full p-5">
-          <div className="grid flex-grow place-items-center w-2/3 self-center">
-            <img src={selectedCar.picture} alt={selectedCar.model} className="w-full" />
-          </div>
-          <div className="hidden md:block md:border-r-2 md:border-r-gray-500" />
-          <div className="grid h-72 flex-grow card place-items-center w-1/3 text-center self-center space-y-10">
-            <h1 className="text-4xl font-bold">
-              <span>Model: </span>
-              {selectedCar.model}
-            </h1>
-            <p className="text-xl font-semibold">
-              <span>City: </span>
-              {selectedCar.city}
-            </p>
-            <p className="text-xl font-semibold">
-              <span>Price-Per-Day: $</span>
-              {selectedCar.price_per_day}
-            </p>
-            <p className="text-xl font-semibold">
-              <span>Year: </span>
-              {selectedCar.year}
-            </p>
-            <p className="text-xl font-semibold">
-              <span>Date Added: </span>
-              {formatTimestamp(selectedCar.created_at)}
-            </p>
-            {isAuthenticated() && (
+      <section className="flex justify-center items-center h-full p-5">
+        {selectedCar && (
+          <div className="grid grid-cols-1 space-y-10 space-x-0 w-full md:grid-cols-2 mdspace-y-0 md:space-x-5">
+            <div className="grid flex-grow card place-items-center">
+              <img src={selectedCar.picture} alt={selectedCar.model} className="w-full" />
+            </div>
+            <div className="grid flex-grow card place-items-center space-y-5">
+              <h1 className="text-4xl text-center font-bold">
+                <span>Model:</span>
+                <br />
+                {selectedCar.model}
+              </h1>
+              <p className="text-xl font-semibold">
+                <span>City: </span>
+                {selectedCar.city}
+              </p>
+              <p className="text-xl font-semibold">
+                <span>Price-Per-Day: $</span>
+                {selectedCar.price_per_day}
+              </p>
+              <p className="text-xl font-semibold">
+                <span>Year: </span>
+                {selectedCar.year}
+              </p>
+              <p className="text-xl font-semibold">
+                <span>Date Added: </span>
+                {formatTimestamp(selectedCar.created_at)}
+              </p>
+              {isAuthenticated() && (
               <>
                 <Link
                   to={`/add_reservation?paramId=${selectedCar.id}&paramModel=${selectedCar.model}`}
@@ -94,10 +95,11 @@ function CarDetails() {
                 </div>
 
               </>
-            )}
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </section>
     </>
   );
 }
