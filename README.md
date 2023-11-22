@@ -59,7 +59,7 @@ _ **[Backend Api linked]**
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Frontend Link](https://car-rentals-silk.vercel.app)
+- [Live Demo Frontend Link](https://car-rentals-teal.vercel.app)
 
 - [Live Demo Backend Link](https://car-rental-iwkn.onrender.com/cars)
 
